@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('partials.header');
 });
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 
-Route::/*middleware(['first', 'second'])->*/group(function () {
-    Route::get('/', function () {
-        // Uses first & second middleware...
-    });
-
-    Route::get('/user/profile', function () {
-        // Uses first & second middleware...
-    });
-});
+//Route::/*middleware(['first', 'second'])->*/group(function () {
+//    Route::get('/', function () {
+//        // Uses first & second middleware...
+//    });
+//
+//    Route::get('/user/profile', function () {
+//        // Uses first & second middleware...
+//    });
+//});
