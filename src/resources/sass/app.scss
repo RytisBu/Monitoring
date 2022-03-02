@@ -1,0 +1,52 @@
+@import '~bootstrap';
+
+$bg-color: rgb(225, 225, 225);
+$bg-green: #198754;
+$color-white: #FFF;
+
+body {
+    background-color: $bg-color;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: $bg-color;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.bg-green {
+    background-color: $bg-green;
+}
+
+.text-white {
+    color: $color-white;
+}
+
+//Main sidebar css
+
+.main-sidebar {
+    position:fixed;
+    width: 200px;
+    z-index: 1000;
+    left: 0;
+    border-right: 1px solid #162636;
+    height: 100%;
+}
+
+#collapsibleNavbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.nav-link .active {
+    background-color: $bg-color !important;
+    color: black !important;
+}
+
+
