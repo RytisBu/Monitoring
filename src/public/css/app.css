@@ -11282,6 +11282,43 @@ textarea.form-control-lg {
   }
 }
 body {
-    background-color: indianred;
+  background-color: #e1e1e1;
 }
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #e1e1e1;
+  /* Chrome 10-25, Safari 5.1-6 */
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.bg-green {
+  background-color: #198754;
+}
+
+.text-white {
+  color: #FFF;
+}
+
+.main-sidebar {
+  position: fixed;
+  width: 200px;
+  z-index: 1000;
+  left: 0;
+  border-right: 1px solid #162636;
+  height: 100%;
+}
+
+#collapsibleNavbar {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.nav-pills .active {
+  background-color: #e1e1e1 !important;
+  color: black !important;
+}
+
 
