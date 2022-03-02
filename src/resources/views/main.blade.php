@@ -11,11 +11,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    @if (!\Illuminate\Support\Facades\Auth::guest())
-        @yield('login')
+    @if (\Illuminate\Support\Facades\Auth::guest())
+        @include('authentication.login')
     @endif
 
-    @if(\Illuminate\Support\Facades\Auth::guest())
+    @if(!\Illuminate\Support\Facades\Auth::guest())
         @include('partials.header')
         @include('sidebar')
 
