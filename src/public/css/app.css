@@ -11285,6 +11285,14 @@ body {
   background-color: #e1e1e1;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
 .gradient-custom {
   /* fallback for old browsers */
   background: #e1e1e1;
@@ -11301,13 +11309,44 @@ body {
   color: #FFF;
 }
 
+.text-black {
+  color: #162636;
+}
+
+.content-green {
+  background-color: #198754 !important;
+  color: #FFF !important;
+}
+
 .main-sidebar {
   position: fixed;
-  width: 200px;
+  max-width: 15%;
   z-index: 1000;
   left: 0;
   border-right: 1px solid #162636;
   height: 100%;
+  top: 56px;
+}
+
+.main-bar {
+  position: fixed;
+  max-width: 81%;
+  z-index: 1000;
+  right: 0;
+  height: auto;
+  margin-top: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+  top: 56px;
+  padding-bottom: 20%;
+}
+
+.simple-form-long {
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px;
+  padding: 20px;
+  width: 100%;
 }
 
 #collapsibleNavbar {
@@ -11316,9 +11355,119 @@ body {
   justify-content: flex-end;
 }
 
-.nav-pills .active {
+.nav-link .active {
   background-color: #e1e1e1 !important;
   color: black !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #e1e1e1;
+  color: #162636;
+}
+
+#typePasswordX::-moz-placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+#typePasswordX:-ms-input-placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+#typePasswordX::placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+#typeEmailX::-moz-placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+#typeEmailX:-ms-input-placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+#typeEmailX::placeholder {
+  color: red;
+  font-size: 12pt;
+}
+
+legend {
+  font-size: 1.5rem;
+  border-bottom: 1px solid green;
+  margin-bottom: 40px;
+}
+
+.input-group-text {
+  background-color: #198754;
+  color: #FFF;
+}
+
+.table-header-green {
+  background-color: #198754 !important;
+}
+
+.detailview-subtitles {
+  text-align: center;
+  color: #fff;
+  background-color: #198754;
+}
+
+.detailview-subtitles th {
+  color: #fff !important;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2000;
+  bottom: 0;
+  background-color: #162636 !important;
+}
+
+@media screen and (min-width: 900px) {
+  .sidebar-nav span {
+    display: block;
+  }
+
+  .sidebar-nav .sidebar-img {
+    display: none;
+  }
+}
+@media screen and (max-width: 900px) {
+  .main-sidebar {
+    max-width: 10%;
+  }
+
+  .main-bar {
+    max-width: 86%;
+  }
+
+  .sidebar-nav span {
+    display: none;
+  }
+
+  .sidebar-nav .sidebar-img {
+    display: block;
+  }
+
+  .nav-pills .nav-link.active {
+    width: 50px;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    width: 55px !important;
+  }
+
+  .side-nav {
+    margin-bottom: 10px;
+    background-color: #e1e1e1;
+    border-radius: 0.25rem;
+  }
 }
 
 

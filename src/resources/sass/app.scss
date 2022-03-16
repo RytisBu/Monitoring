@@ -3,9 +3,20 @@
 $bg-color: rgb(225, 225, 225);
 $bg-green: #198754;
 $color-white: #FFF;
+$color-black: #162636;
+$danger-color: red;
 
 body {
     background-color: $bg-color;
+}
+
+.navbar {
+    //background-color: #198754;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 .gradient-custom {
@@ -27,15 +38,44 @@ body {
     color: $color-white;
 }
 
-//Main sidebar css
+.text-black {
+    color: $color-black;
+}
+
+.content-green {
+    background-color: $bg-green !important;
+    color: $color-white !important;
+}
 
 .main-sidebar {
     position:fixed;
-    width: 200px;
+    max-width: 15%;
     z-index: 1000;
     left: 0;
     border-right: 1px solid #162636;
     height: 100%;
+    top: 56px;
+}
+
+.main-bar {
+    position:fixed;
+    max-width: 81%;
+    z-index: 1000;
+    right: 0;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+    top: 56px;
+    padding-bottom: 20%;
+}
+
+.simple-form-long {
+    border: 1px solid #c3c3c3;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px;
+    padding: 20px;
+    width: 100%;
 }
 
 #collapsibleNavbar {
@@ -49,4 +89,93 @@ body {
     color: black !important;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: $bg-color;
+    color: $color-black;
+}
 
+#typePasswordX::placeholder {
+    color: $danger-color;
+    font-size: 12pt;
+}
+
+#typeEmailX::placeholder {
+    color: $danger-color;
+    font-size: 12pt;
+}
+
+legend {
+    font-size: 1.5rem;
+    border-bottom: 1px solid green;
+    margin-bottom: 40px;
+}
+
+.input-group-text {
+    background-color: $bg-green;
+    color: $color-white;
+}
+
+.table-header-green {
+    background-color: $bg-green !important;
+}
+
+.detailview-subtitles {
+    text-align: center;
+    color: #fff;
+    background-color: $bg-green;
+}
+
+.detailview-subtitles th {
+    color: #fff !important;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2000;
+    bottom: 0;
+    background-color: $color-black !important;
+}
+
+@media screen and (min-width: 900px) {
+    .sidebar-nav span {
+        display: block;
+    }
+
+    .sidebar-nav .sidebar-img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .main-sidebar {
+        max-width: 10%;
+    }
+
+    .main-bar {
+        max-width: 86%;
+    }
+
+    .sidebar-nav span {
+        display: none;
+    }
+
+    .sidebar-nav .sidebar-img {
+        display: block;
+    }
+
+    .nav-pills .nav-link.active {
+        width: 50px;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        width: 55px !important;
+    }
+
+    .side-nav {
+        margin-bottom: 10px;
+        background-color: $bg-color;
+        border-radius: 0.25rem;
+    }
+}
