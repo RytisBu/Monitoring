@@ -11,6 +11,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<div id="app">
+
+</div>
     @if (\Illuminate\Support\Facades\Auth::guest())
         @include('authentication.login')
     @else
@@ -26,5 +29,6 @@
         @include('partials/footer')
     @endif
 <script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/main.js') }}"></script>--}}
 </body>
 </html>

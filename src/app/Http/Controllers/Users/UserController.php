@@ -55,11 +55,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUser(Request $request, $id)
+    public function getUser(Request $request, $filter, $value)
     {
-        $user = User::where('id', $id)->first();
+        if ($value == 0) {
+            $users = User::get();
+        } else {
+            $users = User::where($filter, $value)->first();
+        }
+
+//        dd($users);
+//        $user = User::where('id', $id)->first();
 //        dd($user);
 //        dd($request->user()->is_admin);
-        return response()->json($user);
+        return response()->json($users);
     }
 }

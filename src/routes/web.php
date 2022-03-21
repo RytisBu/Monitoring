@@ -15,6 +15,10 @@ use App\Http\Controllers\Users\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', function() {
+    return view('test');
+});
+
 Route::get('/', [Controller::class, 'index'])->name('main');
 
 //Route::post('/login', [AuthController::class, 'index'])->name('login');
@@ -37,7 +41,7 @@ Route::prefix('profile')->group(function() {
 //
 //});
 Route::controller(UserController::class)->group(function () {
-    Route::get('/user/{id}', 'getUser');
+    Route::get('/user/{filter}/{value}', 'getUser');
 });
 //Route::middleware(['first', 'second'])->group(function () {
 //    Route::get('/detail', function () {
