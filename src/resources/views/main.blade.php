@@ -11,20 +11,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<div id="app">
+
+</div>
     @if (\Illuminate\Support\Facades\Auth::guest())
         @include('authentication.login')
-    @endif
-
-    @if(!\Illuminate\Support\Facades\Auth::guest())
-        @include('partials.header')
-        @include('sidebar')
-
-        <div class="container">
-
+    @else
+    @include('partials.header')
+        <div class="row">
+            @include('sidebar')
+            <div class="d-flex justify-content-center main-bar" style="position: absolute;">
+                @if (!Auth::guest())
+                    @yield('profile')
+                @endif
+            </div>
         </div>
+        @include('partials/footer')
     @endif
-
-    {{--    @include('authentication.login')--}}
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/main.js') }}"></script>--}}
 </body>
 </html>

@@ -16,13 +16,14 @@ services:
             - ./src:/home/monitoring
             - ./src/storage/logs/php-fpm:/var/log/php-fpm
         env_file:
-            - ./.env
-    db:
+            - ./mysql/.env
+
+    db-mariadb:
         container_name: monitoring-db
         image: mariadb:10.6.5
         env_file:
             - ./mysql/.env
         volumes:
-            - ./mysql/data:/var/lib/mysql
+            - ./mysql/data/mariadb:/var/lib/mysql
         ports:
-            - 3336:3306
+            - 3306:3306
