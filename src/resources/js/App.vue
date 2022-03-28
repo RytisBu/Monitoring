@@ -92,33 +92,3 @@ const filterUsers = function() {
     color: red !important;
 }
 </style>
-
-
-
-
-<!--<script>-->
-// var user = 'test';
-//
-// var req = function () {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onprogress
-//     var url = 'http://localhost:8081/user/1';
-//     xhr.open("GET", url, true);
-//     xhr.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             // console.log(this.responseText);
-//             // console.log('cia');
-//             // user = this.responseText;
-//             // user = JSON.parse(this.responseText);
-//             // console.log(user)
-//             console.log(this.responseText)
-//
-//             return this.responseText
-//         }
-//     }
-//     xhr.send()
-//
-//     console.log(xhr.responseText)
-//     alert(xhr.responseText)
-// }
-<!--</script>-->
