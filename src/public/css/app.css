@@ -11429,6 +11429,30 @@ footer {
   background-color: #162636 !important;
 }
 
+.validation-issue {
+  border: 1px solid red;
+}
+
+.validation-issue::-moz-placeholder {
+  color: red;
+  font-size: 12px;
+}
+
+.validation-issue:-ms-input-placeholder {
+  color: red;
+  font-size: 12px;
+}
+
+.validation-issue::placeholder {
+  color: red;
+  font-size: 12px;
+}
+
+.text-red {
+  color: red;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 900px) {
   .sidebar-nav span {
     display: block;

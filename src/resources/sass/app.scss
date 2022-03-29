@@ -138,6 +138,20 @@ footer {
     background-color: $color-black !important;
 }
 
+.validation-issue {
+    border: 1px solid $danger-color;
+}
+
+.validation-issue::placeholder {
+    color: $danger-color;
+    font-size: 12px;
+}
+
+.text-red {
+    color: $danger-color;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 900px) {
     .sidebar-nav span {
         display: block;

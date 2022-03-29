@@ -5,6 +5,7 @@ use App\Http\Controllers\Users\AuthController;
 use App\Http\Controllers\Controller;
 use \App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Users\RegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +22,8 @@ Route::get('test', function() {
 
 Route::get('/', [Controller::class, 'index'])->name('main');
 
-//Route::post('/login', [AuthController::class, 'index'])->name('login');
-//Route::get('/login', [AuthController::class, 'index'])->name('login');
-//Route::match(['post', 'get'], '/login', [AuthController::class, 'index'])->name('login');
+Route::post('/register', [RegistrationController::class, 'create'])->name('user.register');
+Route::get('/register', [RegistrationController::class, 'index'])->name('user.register');
 Route::post('/login', [AuthController::class, 'index'])->name('login');//withoutMiddleware([VerifyCsrfToken::class])->
 Route::get('/login', [AuthController::class, 'index'])->name('login');//withosutMiddleware([VerifyCsrfToken::class])->
 //Route::get('/profile/detail', [UserController::class, 'index'])->name('profile.show');//withosutMiddleware([VerifyCsrfToken::class])->
@@ -43,21 +43,10 @@ Route::prefix('profile')->group(function() {
 Route::controller(UserController::class)->group(function () {
     Route::get('/user/{filter}/{value}', 'getUser');
 });
-//Route::middleware(['first', 'second'])->group(function () {
-//    Route::get('/detail', function () {
-//        // Uses first & second middleware...
-//    });
-//
-//    Route::get('/user/profile', function () {
-//        // Uses first & second middleware...
-//    });
-//});
+
 
 //Route::withoutMiddleware([VerifyCsrfToken::class])->post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::withoutMiddleware([VerifyCsrfToken::class])->get('/logout', [AuthController::class, 'logout'])->name('logout');
-//Route::match(['get', 'post'], '/login', function () {
-//    //
-//});
 
 //Route::/*middleware(['first', 'second'])->*/group(function () {
 //    Route::get('/', function () {
