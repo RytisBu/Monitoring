@@ -8,7 +8,11 @@
                         <div class="mb-md-4 mt-md-4 pb-2">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p class="text-white-50 mb-3">Please enter your login and password!</p>
+                            @if($login ?? '' == false)
+                                <p class="text-red-50 mb-3 text-red">Login failed! Please enter correct email and password.</p>
+                            @else
+                                <p class="text-white-50 mb-3">Please enter your login and password!</p>
+                            @endif
                             <form action="{{ route('login') }}" method="post" class="mb-4">
                                 @csrf
                                 <div class="form-outline form-white mb-4">
@@ -22,8 +26,8 @@
                                 <div class="form-outline form-white mb-4">
                                     <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg"
                                            @error('password')
-                                           placeholder="{{ $message }}"
-                                        @enderror
+                                               placeholder="{{ $message }}"
+                                           @enderror
                                     />
                                     <label class="form-label" for="typePasswordX">Password</label>
                                 </div>
@@ -37,7 +41,7 @@
                         </div>
 
                         <div>
-                            <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign
+                            <p class="mb-0">Don't have an account? <a href="{{ route('user.register') }}" class="text-white-50 fw-bold">Sign
                                     Up</a></p>
                         </div>
 

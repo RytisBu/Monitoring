@@ -8,6 +8,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Http\Requests\UserLoginRequest;
 
 class AuthController extends BaseController
 {
@@ -16,31 +19,21 @@ class AuthController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(UserLoginRequest $request)
     {
-        $login = false;
+        $data = $request->validated();
 
-        $request->validate([
-            'email' => 'required|max:50',
-            'password' => 'required'
-        ]);
+        $user = User::where('email', $data['email'])->first();
 
-        if ($request->isMethod('post')) {
-            $user = User::where('email', $request->input('email'))
-                ->where('password', $request->input('password'))
-                ->first();
-
-            if ($user !== null) {
-                $login = true;
-                Auth::loginUsingId($user->id);
-
-                return view('main', compact('user', 'login'));
-            } else {
-                return view('main', compact('user', 'login'));
-            }
+        if ($user !== null && Hash::check($request->input('password'), $user->password)) {
+            $login = true;
+            Auth::loginUsingId($user->id);
+        } else {
+            $login = false;
         }
 
-        return view('main');
+
+        return view('main', compact('user', 'login'));
     }
 
     /**
@@ -54,69 +47,4 @@ class AuthController extends BaseController
 
         return view('main');
     }
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for editing the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function edit($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function update(Request $request, $id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }

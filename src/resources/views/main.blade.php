@@ -15,9 +15,14 @@
 
 </div>
     @if (\Illuminate\Support\Facades\Auth::guest())
-        @include('authentication.login')
+
+        @if(route('user.register') == Request::url())
+            @include('authentication.registration')
+        @else
+            @include('authentication.login')
+        @endif
     @else
-    @include('partials.header')
+        @include('partials.header')
         <div class="row">
             @include('sidebar')
             <div class="d-flex justify-content-center main-bar" style="position: absolute;">

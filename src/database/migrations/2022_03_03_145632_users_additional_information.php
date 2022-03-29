@@ -15,15 +15,15 @@ class UsersAdditionalInformation extends Migration
     {
         if(Schema::hasTable('users') === true) {
             Schema::table('users', function (Blueprint $table) {
-                $table->string('language')->default('LT');
-                $table->string('timezone');
+                $table->string('language')->default('LT')->nullable(false);
+                $table->string('timezone')->default('+2')->nullable(false);
                 $table->boolean('is_admin')->default(false);
-                $table->string('address_street');
-                $table->string('address_state');
-                $table->string('address_country');
-                $table->string('address_city');
-                $table->integer('phone_mobile');
-                $table->integer('work_mobile');
+                $table->string('address_street')->nullable();
+                $table->string('address_state')->nullable();
+                $table->string('address_country')->nullable();
+                $table->string('address_city')->nullable();
+                $table->integer('phone_mobile')->nullable();
+                $table->integer('work_mobile')->nullable();
                 $table->boolean('deleted')->default(false);
             });
         };

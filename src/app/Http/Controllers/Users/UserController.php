@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Users;
 
-//use App\Http\Controllers\Controller;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -31,8 +30,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-//        dd($user->first_name);
-//        dd($request->isMethod('post'));
+
         if ($request->isMethod('post')) {
             $user                  = User::find($request->user()->id);
             $user->first_name      = $request->input('first_name');
