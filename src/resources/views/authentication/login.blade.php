@@ -8,7 +8,7 @@
                         <div class="mb-md-4 mt-md-4 pb-2">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            @if($login ?? '' == false)
+                            @if(isset($login) and $login == false)
                                 <p class="text-red-50 mb-3 text-red">Login failed! Please enter correct email and password.</p>
                             @else
                                 <p class="text-white-50 mb-3">Please enter your login and password!</p>

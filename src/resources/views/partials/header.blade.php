@@ -3,7 +3,7 @@
 {{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--}}
     <nav class="navbar navbar-expand-sm bg-green navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('logout') }}">Tiketor</a>
+            <a class="navbar-brand" href="{{ route('main') }}">Tiketor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
