@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Systems;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\System;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\App;
 
 class SystemController extends Controller
 {
@@ -12,9 +15,18 @@ class SystemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $orderBy = 'created_at', $orderType = 'DESC')
     {
-        //
+        Paginator::useBootstrap();
+        $systems = System::orderBy($orderBy, $orderType)->paginate(5);
+
+        if ($orderType === 'ASC') {
+            $orderType = 'DESC';
+        } else if($orderType === 'DESC') {
+            $orderType = 'ASC';
+        }
+
+        return view('systems.list', compact('systems', 'orderBy', 'orderType'));
     }
 
     /**

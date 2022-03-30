@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use \App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\RegistrationController;
+use App\Http\Controllers\Systems\SystemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,13 @@ Route::prefix('profile')->group(function() {
 //    Route::match(['get', 'post'], '/store', [UserController::class, 'store'])->name('profile.store');
     Route::post('/edit', [UserController::class, 'store'])->name('profile.store');
 //    Route::get('/save', [UserController::class, 'store'])->name('profile.store');
+});
+
+Route::prefix('systems')->group(function() {
+//    Route::get('/', [SystemController::class, 'index'])->name('system.list');
+    Route::get('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
+//    Route::get('/edit', [SystemController::class, 'store'])->name('profile.edit');
+//    Route::post('/edit', [SystemController::class, 'store'])->name('profile.store');
 });
 
 //Route::get('/user/{$id}', [UserController::class, 'getUser'], function ($id){

@@ -152,6 +152,37 @@ footer {
     font-weight: bold;
 }
 
+.page-item:not(:first-child) .page-link {
+    background-color: $bg-green;
+    color: $color-white;
+}
+
+.page-link {
+    color: $color-white;
+    background-color: $bg-green;
+}
+
+.list-header {
+    background-color: $bg-green;
+}
+
+.list-header a {
+    text-decoration: none;
+    color: $color-white;
+    border-bottom: 1px solid $color-white;
+}
+
+.page-item.disabled .page-link {
+    background-color: $bg-green;
+    color: $color-white;
+}
+
+.page-item.active .page-link {
+    background-color: $color-white;
+    color: $bg-green;
+    border-color: $bg-green;
+}
+
 @media screen and (min-width: 900px) {
     .sidebar-nav span {
         display: block;

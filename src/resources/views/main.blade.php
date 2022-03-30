@@ -25,9 +25,10 @@
         @include('partials.header')
         <div class="row">
             @include('sidebar')
-            <div class="d-flex justify-content-center main-bar" style="position: absolute;">
+            <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
                 @if (!Auth::guest())
                     @yield('profile')
+                    @yield('list.view')
                 @endif
             </div>
         </div>

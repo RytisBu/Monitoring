@@ -11453,6 +11453,37 @@ footer {
   font-weight: bold;
 }
 
+.page-item:not(:first-child) .page-link {
+  background-color: #198754;
+  color: #FFF;
+}
+
+.page-link {
+  color: #FFF;
+  background-color: #198754;
+}
+
+.list-header {
+  background-color: #198754;
+}
+
+.list-header a {
+  text-decoration: none;
+  color: #FFF;
+  border-bottom: 1px solid #FFF;
+}
+
+.page-item.disabled .page-link {
+  background-color: #198754;
+  color: #FFF;
+}
+
+.page-item.active .page-link {
+  background-color: #FFF;
+  color: #198754;
+  border-color: #198754;
+}
+
 @media screen and (min-width: 900px) {
   .sidebar-nav span {
     display: block;

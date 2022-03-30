@@ -16,6 +16,9 @@
                         <a class="nav-link" href="#">Complaints</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('system.list') }}">Systems</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Users</a>
                     </li>
                     <li class="nav-item">
