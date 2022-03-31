@@ -44,6 +44,8 @@ Route::prefix('systems')->group(function() {
 //    Route::get('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
 //    Route::post('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
     Route::match(array('GET', 'POST'), '/', [SystemController::class, 'index'])->name('system.list');
+    Route::match(array('GET'), '/create', [SystemController::class, 'create'])->name('system.create');
+    Route::match(array('POST'), '/create', [SystemController::class, 'store'])->name('system.store');
 //    Route::get('/edit', [SystemController::class, 'store'])->name('profile.edit');
 //    Route::post('/edit', [SystemController::class, 'store'])->name('profile.store');
 });

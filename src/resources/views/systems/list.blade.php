@@ -1,10 +1,5 @@
 @extends('main')
 
-{{--@section('list.filter')--}}
-{{--    {{ dd($systemsFilter) }}--}}
-{{--    --}}
-{{--@endsection--}}
-
 @section('list.view')
 
 <div class="d-flex flex-column bd-highlight mb-3">
@@ -91,9 +86,8 @@
 @section('sidebar.collection')
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
-            <a href="#" class="nav-link sidebar-nav
-{{--            {{ route('profile.show') }}--}}
-            @if (Route::currentRouteName() == 'profile.show') active @else text-white @endif
+            <a href="{{ route('system.create') }}" class="nav-link sidebar-nav
+            @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
                 ">
             <span>
                 Create View

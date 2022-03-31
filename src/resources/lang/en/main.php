@@ -22,6 +22,7 @@ return [
     'systems_list_header' => 'Systems List View',
     'systems_list_filter' => 'Systems Filter',
     'deleted'             => 'Deleted',
-    'assigned_user_id'    => 'Assigned to'
+    'assigned_user_id'    => 'Assigned to',
+    'description'         => 'Description',
 
 ];

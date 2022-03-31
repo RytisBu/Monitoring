@@ -7,7 +7,7 @@
     @if (in_array(Route::current()->getName(), ['profile.edit', 'profile.store', 'profile.show']))
         @yield('sidebar.collection')
     @endif
-    @if (in_array(Route::current()->getName(), ['system.edit', 'system.store', 'system.show', 'system.list']))
+    @if (in_array(Route::current()->getName(), ['system.edit', 'system.store', 'system.show', 'system.list', 'system.create']))
         @yield('sidebar.collection')
     @endif
 

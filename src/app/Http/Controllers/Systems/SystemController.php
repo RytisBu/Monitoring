@@ -8,6 +8,9 @@ use App\Models\System;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use App\Http\Services\Systems\System AS SystemsService;
+use App\Models\User;
+use App\Http\Requests\Systems\CreateSystemRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SystemController extends Controller
 {
@@ -41,7 +44,9 @@ class SystemController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::where('status', '=', 'Active')->get();
+
+        return view('systems.create', compact('users'));
     }
 
     /**
@@ -50,9 +55,20 @@ class SystemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSystemRequest $request)
     {
-        //
+        $system = new System();
+        $system->name = $request->name;
+        $system->assigned_user_id = $request->assigned_user_id;
+        $system->status = $request->status;
+        $system->description = $request->description;
+        $system->created_by = Auth::user()->id;
+        $system->updated_by = Auth::user()->id;
+        $system->deleted = 0;
+        $system->save();
+
+
+        return $this->create();
     }
 
     /**
