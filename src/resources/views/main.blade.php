@@ -28,6 +28,7 @@
             <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
                 @if (!Auth::guest())
                     @yield('profile')
+                    @yield('list.filter')
                     @yield('list.view')
                 @endif
             </div>

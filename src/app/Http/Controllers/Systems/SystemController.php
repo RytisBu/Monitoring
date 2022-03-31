@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\System;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
+use App\Http\Services\Systems\System AS SystemsService;
 
 class SystemController extends Controller
 {
@@ -15,18 +16,22 @@ class SystemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $orderBy = 'created_at', $orderType = 'DESC')
+    public function index(Request $request)
     {
         Paginator::useBootstrap();
-        $systems = System::orderBy($orderBy, $orderType)->paginate(5);
 
-        if ($orderType === 'ASC') {
-            $orderType = 'DESC';
-        } else if($orderType === 'DESC') {
-            $orderType = 'ASC';
+        $orderBy       = SystemsService::sortBy($request->sort);
+        $orderType     = SystemsService::sortType($request->orderType);
+        $systemsFilter = SystemsService::denormalizeData($request);
+        $filter        = SystemsService::filter($request->all());
+
+        if (!empty($filter)) {
+            $systems = System::where($filter)->orderBy($orderBy, $orderType)->paginate(5);
+        } else {
+            $systems = System::orderBy($orderBy, $orderType)->paginate(5);
         }
 
-        return view('systems.list', compact('systems', 'orderBy', 'orderType'));
+        return view('systems.list', compact('systems', 'orderBy', 'orderType', 'systemsFilter'));
     }
 
     /**

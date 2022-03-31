@@ -7,6 +7,7 @@ use \App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\RegistrationController;
 use App\Http\Controllers\Systems\SystemController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +41,9 @@ Route::prefix('profile')->group(function() {
 
 Route::prefix('systems')->group(function() {
 //    Route::get('/', [SystemController::class, 'index'])->name('system.list');
-    Route::get('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
+//    Route::get('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
+//    Route::post('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
+    Route::match(array('GET', 'POST'), '/', [SystemController::class, 'index'])->name('system.list');
 //    Route::get('/edit', [SystemController::class, 'store'])->name('profile.edit');
 //    Route::post('/edit', [SystemController::class, 'store'])->name('profile.store');
 });
