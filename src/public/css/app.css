@@ -11318,6 +11318,10 @@ body {
   color: #FFF !important;
 }
 
+.text-green {
+  color: #198754;
+}
+
 .main-sidebar {
   position: fixed;
   max-width: 15%;

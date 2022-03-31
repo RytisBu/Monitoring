@@ -47,6 +47,10 @@ body {
     color: $color-white !important;
 }
 
+.text-green {
+    color: $bg-green;
+}
+
 .main-sidebar {
     position:fixed;
     max-width: 15%;

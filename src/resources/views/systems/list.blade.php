@@ -32,10 +32,22 @@
                 </div>
                 <div class="col-md-6 mb-6">
                     <label>{{ __('main.assigned_user_id') }}:</label>
-                    <input type="text" name="assigned_user_id" class="form-control" value="{{ $systemsFilter->assigned_user_id ?? '' }}">
+                    <select class="form-select form-select @error('assigned_user_id') validation-issue text-red @enderror" name="assigned_user_id" aria-label=".form-select-sm example">
+                        @isset($systemsFilter->assigned_user_id)
+                            @foreach($users as $user)
+                                @if($systemsFilter->assigned_user_id == $user->id)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endif
+                            @endforeach
+                        @else
+                            <option selected></option>
+                        @endisset
+                        @error('assigned_user_id') <option selected>{{ $message }}</option> @enderror
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-
-
                 <div class="col-md-6 mb-6">
                     <label>{{ __('main.deleted') }}:</label>
                     <select class="form-select form-select" name="deleted" aria-label=".form-select-sm example">
@@ -63,7 +75,7 @@
                 <tbody>
                 @foreach ($systems as $system)
                     <tr>
-                        <th scope="row">{{ $system->name }}</th>
+                        <th scope="row"><a href="{{ route('system.show', $system->id) }}" class="text-green">{{ $system->name }}</a></th>
                         <th>{{ $system->created_at }}</th>
                         <th>{{ $system->updated_at }}</th>
                         <td>{{ $system->status }}</td>
@@ -86,18 +98,6 @@
 @section('sidebar.collection')
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
-            <a href="{{ route('system.create') }}" class="nav-link sidebar-nav
-            @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
-                ">
-            <span>
-                Create View
-            </span>
-                <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
-                    <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
-                </svg>
-            </a>
-        </li>
-        <li class="nav-item side-nav">
             <a href="{{ route('system.list') }}" class="nav-link sidebar-nav
             @if (in_array(Route::currentRouteName(), ['system.list'])) active @else text-white @endif
                 ">
@@ -113,6 +113,18 @@
                         <path d="M233 1300 c-80 -26 -161 -99 -200 -178 -23 -48 -27 -70 -28 -142 0 -77 3 -92 33 -152 73 -148 229 -223 384 -183 160 40 260 168 260 330 1 235 -225 398 -449 325z"/>
                         <path d="M1335 1187 c-93 -44 -145 -126 -145 -231 0 -76 34 -151 88 -196 77 -64 -36 -60 1897 -58 l1760 3 40 22 c92 49 139 127 140 228 0 102 -48 183 -138 232 -30 17 -132 18 -1812 20 l-1780 3 -50 -23z"/>
                     </g>
+                </svg>
+            </a>
+        </li>
+        <li class="nav-item side-nav">
+            <a href="{{ route('system.create') }}" class="nav-link sidebar-nav
+            @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
+                ">
+            <span>
+                Create View
+            </span>
+                <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                    <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
                 </svg>
             </a>
         </li>

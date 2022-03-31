@@ -44,8 +44,11 @@ Route::prefix('systems')->group(function() {
 //    Route::get('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
 //    Route::post('/{orderBy?}/{orderType?}', [SystemController::class, 'index'])->name('system.list');
     Route::match(array('GET', 'POST'), '/', [SystemController::class, 'index'])->name('system.list');
-    Route::match(array('GET'), '/create', [SystemController::class, 'create'])->name('system.create');
-    Route::match(array('POST'), '/create', [SystemController::class, 'store'])->name('system.store');
+    Route::get('/create', [SystemController::class, 'create'])->name('system.create');
+    Route::post('/create', [SystemController::class, 'store'])->name('system.store');
+    Route::get('/show={id}', [SystemController::class, 'show'])->name('system.show');
+    Route::get('/edit={id}', [SystemController::class, 'edit'])->name('system.edit');
+    Route::post('/edit={id}', [SystemController::class, 'update'])->name('system.update');
 //    Route::get('/edit', [SystemController::class, 'store'])->name('profile.edit');
 //    Route::post('/edit', [SystemController::class, 'store'])->name('profile.store');
 });

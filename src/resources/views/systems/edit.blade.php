@@ -1,27 +1,27 @@
 @extends('main')
 
 @section('list.view')
-    <form action="{{ route('system.store') }}" method="post" class="needs-validation simple-form-long">
+    <form action="{{ route('system.update', ($system->id ?? '')) }}" method="post" class="needs-validation simple-form-long">
         @CSRF
-        <legend>System Create View</legend>
+        <legend>System Edit View</legend>
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label>{{ __('main.name') }}:</label>
-                <input type="text" name="name" class="form-control @error('name') validation-issue text-red @enderror" @error('name') value="{{ $message }}" @else value="{{ old('name') }}" @enderror placeholder="Name" required>
+                <input type="text" name="name" class="form-control @error('name') validation-issue text-red @enderror" @error('name') value="{{ $message }}" @else value="{{ $system->name ?? '' }}" @enderror placeholder="Name" required>
             </div>
             <div class="col-md-4 mb-3">
                 <label>{{ __('main.assigned_user_id') }}:</label>
                 <select class="form-select form-select @error('assigned_user_id') validation-issue text-red @enderror" name="assigned_user_id" aria-label=".form-select-sm example">
                     @error('assigned_user_id') <option selected>{{ $message }}</option> @enderror
-                    @if(old('assigned_user_id'))
+                    @isset($system->assigned_user_id)
                         @foreach($users as $user)
-                            @if(old('assigned_user_id') == $user->id)
+                            @if($system->assigned_user_id == $user->id)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endif
                         @endforeach
                     @else
                         <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->name }}</option>
-                    @endif
+                    @endisset
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
@@ -31,15 +31,15 @@
                 <label>{{ __('main.status') }}:</label>
                 <select class="form-select form-select @error('status') validation-issue text-red @enderror" name="status" aria-label=".form-select-sm example">
                     @error('status') <option selected>{{ $message }}</option> @enderror
-                    <option value="Active" @if (old('status') == 'Active') selected @endif>Active</option>
-                    <option value="Inactive" @if (old('status') == 'Inactive') selected @endif>Inactive</option>
+                    <option value="Active" @if (($system->status ?? '') == 'Active') selected @endif>Active</option>
+                    <option value="Inactive" @if (($system->status ?? '') == 'Inactive') selected @endif>Inactive</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-mb-12 mb-3">
                 <label class="form-label">{{ __('main.description') }}:</label>
-                <textarea class="form-control @error('description') validation-issue text-red @enderror" name="description" rows="3">@error('description') {{ $message }} @else {{ old('description') }} @enderror</textarea>
+                <textarea class="form-control @error('description') validation-issue text-red @enderror" name="description" rows="3">@error('description') {{ $message }} @else {{ $system->description ?? '' }} @enderror</textarea>
             </div>
         </div>
         <div class="row">
@@ -51,6 +51,18 @@
 @section('sidebar.collection')
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
+            <a href="{{ route('system.edit', $system->id) }}" class="nav-link sidebar-nav
+            @if (Route::currentRouteName() == 'system.edit') active @else text-white @endif
+                ">
+            <span>
+                Edit View
+            </span>
+                <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                    <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
+                </svg>
+            </a>
+        </li>
+        <li class="nav-item side-nav">
             <a href="{{ route('system.create') }}" class="nav-link sidebar-nav
             @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
                 ">
@@ -59,6 +71,21 @@
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                     <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
+                </svg>
+            </a>
+        </li>
+        <li class="nav-item side-nav">
+            <a href="{{ route('system.show', ($system->id ?? '')) }}" class="nav-link sidebar-nav
+            @if (Route::currentRouteName() == 'system.show') active @else text-white @endif
+                ">
+            <span>
+                Detail View
+            </span>
+                <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                    <path
+                        d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 19V5h16l.002 14H4z"></path>
+                    <path d="M6 7h12v2H6zm0 4h12v2H6zm0 4h6v2H6z"></path>
                 </svg>
             </a>
         </li>

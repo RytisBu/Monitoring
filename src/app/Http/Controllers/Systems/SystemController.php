@@ -23,6 +23,7 @@ class SystemController extends Controller
     {
         Paginator::useBootstrap();
 
+        $users         = User::where('status', '=', 'Active')->get();
         $orderBy       = SystemsService::sortBy($request->sort);
         $orderType     = SystemsService::sortType($request->orderType);
         $systemsFilter = SystemsService::denormalizeData($request);
@@ -34,7 +35,7 @@ class SystemController extends Controller
             $systems = System::orderBy($orderBy, $orderType)->paginate(5);
         }
 
-        return view('systems.list', compact('systems', 'orderBy', 'orderType', 'systemsFilter'));
+        return view('systems.list', compact('systems', 'orderBy', 'orderType', 'systemsFilter', 'users'));
     }
 
     /**
@@ -67,7 +68,6 @@ class SystemController extends Controller
         $system->deleted = 0;
         $system->save();
 
-
         return $this->create();
     }
 
@@ -79,7 +79,10 @@ class SystemController extends Controller
      */
     public function show($id)
     {
-        //
+        $system = System::where('id', '=', $id)->first();
+        $users = User::get();
+
+        return view('systems.show', compact('system', 'users'));
     }
 
     /**
@@ -90,7 +93,10 @@ class SystemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users  = User::where('status', '=', 'Active')->get();
+        $system = System::where('id', '=', $id)->first();
+
+        return view('systems.edit', compact('system', 'users'));
     }
 
     /**
@@ -100,9 +106,24 @@ class SystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateSystemRequest $request, $id)
     {
-        //
+        $system= System::where('id', '=', $id)->first();
+
+        if(empty($system)) {
+            return $this->create();
+        }
+
+        $system->name             = $request->name;
+        $system->assigned_user_id = $request->assigned_user_id;
+        $system->status           = $request->status;
+        $system->description      = $request->description;
+        $system->created_by       = Auth::user()->id;
+        $system->updated_by       = Auth::user()->id;
+        $system->deleted          = 0;
+        $system->save();
+
+        return redirect()->route('system.show', $id);
     }
 
     /**
