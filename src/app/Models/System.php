@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class System extends Model
 {
@@ -35,4 +36,11 @@ class System extends Model
      */
     protected $hidden = ['deleted'];
 
+    /**
+     * Get the user that owns the system.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

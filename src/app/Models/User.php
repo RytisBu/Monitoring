@@ -52,8 +52,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the systems for the user post.
+     */
+    public function systems()
+    {
+        return $this->hasMany(System::class, 'assigned_user_id');
+    }
+
     function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    public static function getActiveUsers()
+    {
+        return User::where('status', '=', 'Active')->get();
+    }
+
+    public static function getAllUsers()
+    {
+        return User::get();
     }
 }

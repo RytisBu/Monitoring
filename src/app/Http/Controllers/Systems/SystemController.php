@@ -23,7 +23,7 @@ class SystemController extends Controller
     {
         Paginator::useBootstrap();
 
-        $users         = User::where('status', '=', 'Active')->get();
+        $users         = User::getActiveUsers();
         $orderBy       = SystemsService::sortBy($request->sort);
         $orderType     = SystemsService::sortType($request->orderType);
         $systemsFilter = SystemsService::denormalizeData($request);
@@ -45,7 +45,7 @@ class SystemController extends Controller
      */
     public function create()
     {
-        $users = User::where('status', '=', 'Active')->get();
+        $users = User::getActiveUsers();
 
         return view('systems.create', compact('users'));
     }
@@ -58,14 +58,14 @@ class SystemController extends Controller
      */
     public function store(CreateSystemRequest $request)
     {
-        $system = new System();
-        $system->name = $request->name;
+        $system                   = new System();
+        $system->name             = $request->name;
         $system->assigned_user_id = $request->assigned_user_id;
-        $system->status = $request->status;
-        $system->description = $request->description;
-        $system->created_by = Auth::user()->id;
-        $system->updated_by = Auth::user()->id;
-        $system->deleted = 0;
+        $system->status           = $request->status;
+        $system->description      = $request->description;
+        $system->created_by       = Auth::user()->id;
+        $system->updated_by       = Auth::user()->id;
+        $system->deleted          = 0;
         $system->save();
 
         return $this->create();
@@ -80,7 +80,7 @@ class SystemController extends Controller
     public function show($id)
     {
         $system = System::where('id', '=', $id)->first();
-        $users = User::get();
+        $users  = User::getAllUsers();
 
         return view('systems.show', compact('system', 'users'));
     }
@@ -93,7 +93,7 @@ class SystemController extends Controller
      */
     public function edit($id)
     {
-        $users  = User::where('status', '=', 'Active')->get();
+        $users  = User::getActiveUsers();
         $system = System::where('id', '=', $id)->first();
 
         return view('systems.edit', compact('system', 'users'));
@@ -110,17 +110,13 @@ class SystemController extends Controller
     {
         $system= System::where('id', '=', $id)->first();
 
-        if(empty($system)) {
-            return $this->create();
-        }
+        if(empty($system)) { return $this->create(); }
 
         $system->name             = $request->name;
         $system->assigned_user_id = $request->assigned_user_id;
         $system->status           = $request->status;
         $system->description      = $request->description;
-        $system->created_by       = Auth::user()->id;
         $system->updated_by       = Auth::user()->id;
-        $system->deleted          = 0;
         $system->save();
 
         return redirect()->route('system.show', $id);
@@ -134,6 +130,12 @@ class SystemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = System::find($id)->delete();
+
+        if($response) {
+            return redirect()->route('system.list');
+        }
+
+        return redirect()->route('system.show', $id);
     }
 }

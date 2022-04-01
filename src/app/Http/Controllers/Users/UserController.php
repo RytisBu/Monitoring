@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Users;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
 {
@@ -17,7 +16,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-//        dd($request->user()->is_admin);
+
         return view('users.profile-view', compact('user'));
     }
 

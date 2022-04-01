@@ -15,7 +15,6 @@
 
 </div>
     @if (\Illuminate\Support\Facades\Auth::guest())
-
         @if(route('user.register') == Request::url())
             @include('authentication.registration')
         @else
