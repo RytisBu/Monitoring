@@ -16,6 +16,9 @@
                         <a class="nav-link" href="#">Complaints</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('system.list') }}">Systems</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Users</a>
                     </li>
                     <li class="nav-item">
@@ -23,7 +26,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href={{ route('main') }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ $user->name ?? ''}}
+                            {{ Auth::user()->name ?? '' }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>

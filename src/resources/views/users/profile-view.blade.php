@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('profile')
-    <table class="table table-striped simple-form-long">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col" colspan="5" rowspan="2">
