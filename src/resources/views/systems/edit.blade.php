@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('list.view')
+@section('main.content')
     <form action="{{ route('system.update', ($system->id ?? '')) }}" method="post" class="needs-validation simple-form-long">
         @CSRF
         <legend>System Edit View</legend>
@@ -49,7 +49,6 @@
 @endsection
 
 @section('sidebar.collection')
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
             <a href="{{ route('system.edit', $system->id) }}" class="nav-link sidebar-nav
             @if (Route::currentRouteName() == 'system.edit') active @else text-white @endif
@@ -108,6 +107,4 @@
                 </svg>
             </a>
         </li>
-    </ul>
-    <hr>
 @endsection

@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('profile')
+@section('main.content')
     <form action="{{ route('profile.store') }}" method="post" class="needs-validation simple-form-long">
         @CSRF
         <legend>Profile Edit View</legend>
@@ -101,7 +101,6 @@
 @endsection
 
 @section('sidebar.collection')
-<ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item side-nav">
         <a href="{{ route('profile.edit') }}" class="nav-link sidebar-nav
             @if (in_array(Route::currentRouteName(), ['profile.edit', 'profile.store'])) active @else text-white @endif
@@ -131,6 +130,4 @@
             </svg>
         </a>
     </li>
-</ul>
-<hr>
 @endsection

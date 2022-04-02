@@ -13,16 +13,19 @@ return [
     |
     */
 
-    'name'                => 'Name',
-    'created_at'          => 'Created at',
-    'updated_at'          => 'Updated at',
-    'created_at_from'     => 'Created from',
-    'updated_at_from'     => 'Updated from',
-    'status'              => 'Status',
-    'systems_list_header' => 'Systems List View',
-    'systems_list_filter' => 'Systems Filter',
-    'deleted'             => 'Deleted',
-    'assigned_user_id'    => 'Assigned to',
-    'description'         => 'Description',
-
+    'name'                   => 'Name',
+    'created_at'             => 'Created at',
+    'updated_at'             => 'Updated at',
+    'created_at_from'        => 'Created from',
+    'updated_at_from'        => 'Updated from',
+    'status'                 => 'Status',
+    'systems_list_header'    => 'Systems List View',
+    'systems_list_filter'    => 'Systems Filter',
+    'deleted'                => 'Deleted',
+    'assigned_user_id'       => 'Assigned to',
+    'description'            => 'Description',
+    'category'               => 'Category',
+    'priority'               => 'Priority',
+    'system_id'              => 'System',
+    'complaints_list_header' => 'Complaints List View'
 ];

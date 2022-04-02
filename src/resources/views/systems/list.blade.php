@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('list.view')
+@section('main.content')
 
 <div class="d-flex flex-column bd-highlight mb-3">
     <div class="d-flex flex-column justify-content-center flex-lg-wrap">
@@ -96,7 +96,6 @@
 @endsection
 
 @section('sidebar.collection')
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
             <a href="{{ route('system.list') }}" class="nav-link sidebar-nav
             @if (in_array(Route::currentRouteName(), ['system.list'])) active @else text-white @endif
@@ -128,8 +127,6 @@
                 </svg>
             </a>
         </li>
-    </ul>
-    <hr>
 @endsection
 
 

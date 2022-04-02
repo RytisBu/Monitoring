@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Complaint;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Complaint AS ComplaintModel;
 
 class User extends Authenticatable
 {
@@ -58,6 +60,30 @@ class User extends Authenticatable
     public function systems()
     {
         return $this->hasMany(System::class, 'assigned_user_id');
+    }
+
+    /**
+     * Get the systems for the user post.
+     */
+    public function complaints()
+    {
+        return $this->hasMany(ComplaintModel::class, 'assigned_user_id');
+    }
+
+    /**
+     * Get the systems for the user post.
+     */
+    public function complaintsCreated()
+    {
+        return $this->hasMany(ComplaintModel::class, 'created_by_user');
+    }
+
+    /**
+     * Get the systems for the user post.
+     */
+    public function complaintsUpdated()
+    {
+        return $this->hasMany(ComplaintModel::class, 'updated_by_user');
     }
 
     function isAdmin()

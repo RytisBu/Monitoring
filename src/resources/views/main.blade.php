@@ -11,9 +11,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-
-</div>
     @if (\Illuminate\Support\Facades\Auth::guest())
         @if(route('user.register') == Request::url())
             @include('authentication.registration')
@@ -26,14 +23,18 @@
             @include('sidebar')
             <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
                 @if (!Auth::guest())
-                    @yield('profile')
-                    @yield('list.view')
+                    @yield('main.content')
+
+                    @if(Route::current()->getName() == 'main')
+                        <div id="app">
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
         @include('partials/footer')
     @endif
 <script src="{{ asset('js/app.js') }}"></script>
-{{--<script src="{{ asset('js/main.js') }}"></script>--}}
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

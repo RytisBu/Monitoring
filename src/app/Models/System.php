@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Complaint;
 
 class System extends Model
 {
@@ -42,5 +43,18 @@ class System extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id');
+    }
+
+    /**
+     * Get the systems for the user post.
+     */
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class, 'system_id');
+    }
+
+    public static function getActiveSystems()
+    {
+        return System::where('status', 'Active')->where('deleted', '0')->get();
     }
 }

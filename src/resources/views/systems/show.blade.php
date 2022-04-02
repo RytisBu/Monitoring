@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('profile')
+@section('main.content')
     <table class="table table-striped">
         <thead>
         <tr>
@@ -11,7 +11,7 @@
         </thead>
         <tbody>
         <tr class="detailview-subtitles">
-            <th scope="row" colspan="5">Main user info</th>
+            <th scope="row" colspan="5">Main system info</th>
         </tr>
         <tr>
             <th scope="row">{{ __('main.name') }}:</th>
@@ -77,7 +77,6 @@
 @endsection
 
 @section('sidebar.collection')
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
             <a href="{{ route('system.destroy', ($system->id ?? '')) }}" class="nav-link sidebar-nav
             @if (in_array(Route::currentRouteName(), ['system.destroy'])) active @else text-white @endif
@@ -151,6 +150,4 @@
                 </svg>
             </a>
         </li>
-    </ul>
-    <hr>
 @endsection

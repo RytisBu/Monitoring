@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Systems;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\System;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\App;
+//use Illuminate\Pagination\Paginator;
+//use Illuminate\Support\Facades\App;
 use App\Http\Services\Systems\System AS SystemsService;
 use App\Models\User;
 use App\Http\Requests\Systems\CreateSystemRequest;
@@ -21,7 +21,7 @@ class SystemController extends Controller
      */
     public function index(Request $request)
     {
-        Paginator::useBootstrap();
+//        Paginator::useBootstrap();
 
         $users         = User::getActiveUsers();
         $orderBy       = SystemsService::sortBy($request->sort);

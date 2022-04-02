@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Complaints;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Models\Complaint;
+use App\Models\User;
+use App\Http\Services\Complaints\Complaint AS ComplaintsService;
+use App\Models\System;
+use App\Http\Requests\Complaints\CreateComplaintRequest;
+
 
 class ComplaintController extends Controller
 {
@@ -12,9 +19,22 @@ class ComplaintController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $complaintsFilter = ComplaintsService::denormalizeData($request);
+        $users            = User::getActiveUsers();
+        $systems          = System::where('deleted', '0')->get();
+        $orderBy          = ComplaintsService::sortBy($request->sort);
+        $orderType        = ComplaintsService::sortType($request->orderType);
+        $filter           = ComplaintsService::filter($request->all());
+
+        if (!empty($filter)) {
+            $complaints = Complaint::with('system', 'user')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(1);
+        } else {
+            $complaints = Complaint::with('system', 'user')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(1);
+        }
+
+        return view('complaints.list', compact('complaints', 'complaintsFilter', 'users', 'systems', 'orderBy', 'orderType'));
     }
 
     /**
@@ -24,7 +44,10 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        //
+        $users   = User::getActiveUsers();
+        $systems = System::getActiveSystems();
+
+        return view('complaints.create', compact('users', 'systems'));
     }
 
     /**
@@ -33,9 +56,23 @@ class ComplaintController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateComplaintRequest $request)
     {
-        //
+        $complaint                   = new Complaint();
+        $complaint->name             = $request->name;
+        $complaint->assigned_user_id = $request->assigned_user_id;
+        $complaint->status           = $request->status;
+        $complaint->priority         = $request->priority;
+        $complaint->category         = $request->category;
+        $complaint->system_id        = $request->system_id;
+        $complaint->description      = $request->description;
+        $complaint->created_by_user  = Auth::user()->id;
+        $complaint->updated_by_user  = Auth::user()->id;
+        $complaint->deleted          = 0;
+
+        $complaint->save();
+
+        return $this->show($complaint->id);
     }
 
     /**
@@ -46,7 +83,12 @@ class ComplaintController extends Controller
      */
     public function show($id)
     {
-        //
+        $complaint = Complaint::with('user', 'system', 'createdBy', 'updatedBy')
+            ->where('id', $id)
+            ->where('deleted', '0')
+            ->first();;
+
+        return view('complaints.show', compact('complaint'));
     }
 
     /**
@@ -57,7 +99,11 @@ class ComplaintController extends Controller
      */
     public function edit($id)
     {
-        //
+        $complaint = Complaint::with('user', 'system')->where('deleted', '0')->first();
+        $users     = User::getActiveUsers();
+        $systems   = System::getActiveSystems();
+
+        return view('complaints.edit', compact('users', 'systems', 'complaint'));
     }
 
     /**
@@ -67,9 +113,23 @@ class ComplaintController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateComplaintRequest $request, $id)
     {
-        //
+        $complaint= Complaint::where('id', $id)->first();
+
+        if(empty($complaint)) { return $this->create(); }
+
+        $complaint->name             = $request->name;
+        $complaint->assigned_user_id = $request->assigned_user_id;
+        $complaint->status           = $request->status;
+        $complaint->priority         = $request->priority;
+        $complaint->category         = $request->category;
+        $complaint->system_id        = $request->system_id;
+        $complaint->description      = $request->description;
+        $complaint->updated_by_user  = Auth::user()->id;
+        $complaint->save();
+
+        return redirect()->route('complaint.show', $id);
     }
 
     /**

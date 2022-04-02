@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('list.view')
+@section('main.content')
     <form action="{{ route('system.store') }}" method="post" class="needs-validation simple-form-long">
         @CSRF
         <legend>System Create View</legend>
@@ -49,7 +49,6 @@
 @endsection
 
 @section('sidebar.collection')
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
             <a href="{{ route('system.create') }}" class="nav-link sidebar-nav
             @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
@@ -81,6 +80,4 @@
                 </svg>
             </a>
         </li>
-    </ul>
-    <hr>
 @endsection
