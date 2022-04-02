@@ -68,7 +68,7 @@ class SystemController extends Controller
         $system->deleted          = 0;
         $system->save();
 
-        return $this->create();
+        return redirect()->route('system.show', $system->id);
     }
 
     /**
@@ -79,8 +79,12 @@ class SystemController extends Controller
      */
     public function show($id)
     {
-        $system = System::where('id', '=', $id)->first();
+        $system = System::where('id', '=', $id)->where('deleted', '!=', '1')->first();
         $users  = User::getAllUsers();
+
+        if(empty($system)) {
+            return view('complaint.list');
+        }
 
         return view('systems.show', compact('system', 'users'));
     }
@@ -94,7 +98,7 @@ class SystemController extends Controller
     public function edit($id)
     {
         $users  = User::getActiveUsers();
-        $system = System::where('id', '=', $id)->first();
+        $system = System::where('id', '=', $id)->where('deleted', '!=', '1')->first();
 
         return view('systems.edit', compact('system', 'users'));
     }

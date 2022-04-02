@@ -29,9 +29,9 @@ class ComplaintController extends Controller
         $filter           = ComplaintsService::filter($request->all());
 
         if (!empty($filter)) {
-            $complaints = Complaint::with('system', 'user')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(1);
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(50);
         } else {
-            $complaints = Complaint::with('system', 'user')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(1);
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(50);
         }
 
         return view('complaints.list', compact('complaints', 'complaintsFilter', 'users', 'systems', 'orderBy', 'orderType'));
@@ -58,6 +58,8 @@ class ComplaintController extends Controller
      */
     public function store(CreateComplaintRequest $request)
     {
+        $user = User::where('id', $request->assigned_user_id)->first();
+
         $complaint                   = new Complaint();
         $complaint->name             = $request->name;
         $complaint->assigned_user_id = $request->assigned_user_id;
@@ -68,11 +70,10 @@ class ComplaintController extends Controller
         $complaint->description      = $request->description;
         $complaint->created_by_user  = Auth::user()->id;
         $complaint->updated_by_user  = Auth::user()->id;
-        $complaint->deleted          = 0;
-
+        $complaint->deleted          = '0';
         $complaint->save();
 
-        return $this->show($complaint->id);
+        return redirect()->route('complaint.show', $complaint->id);
     }
 
     /**
@@ -85,8 +86,12 @@ class ComplaintController extends Controller
     {
         $complaint = Complaint::with('user', 'system', 'createdBy', 'updatedBy')
             ->where('id', $id)
-            ->where('deleted', '0')
-            ->first();;
+            ->where('deleted', '!=', '1')
+            ->first();
+
+        if(empty($complaint)) {
+            return view('complaint.list');
+        }
 
         return view('complaints.show', compact('complaint'));
     }
@@ -140,6 +145,12 @@ class ComplaintController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = Complaint::find($id)->delete();
+
+        if($response) {
+            return redirect()->route('complaint.list');
+        }
+
+        return redirect()->route('complaint.show', $id);
     }
 }

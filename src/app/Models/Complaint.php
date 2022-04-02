@@ -11,12 +11,27 @@ class Complaint extends Model
 {
     use HasFactory;
 
+    protected $table = 'complaints';
+
+    protected $fillable = [
+        'name',
+        'created_by_user',
+        'updated_by_user',
+        'category',
+        'status',
+        'priority',
+        'assigned_user_id',
+        'system_id',
+        'description',
+        'deleted',
+    ];
+
     /**
      * Get the user that owns the system.
      */
     public function system()
     {
-        return $this->belongsTo(System::class, 'id');
+        return $this->belongsTo(System::class, 'system_id');
     }
 
     /**
@@ -24,7 +39,7 @@ class Complaint extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'assigned_user_id');
     }
 
     /**
@@ -32,7 +47,7 @@ class Complaint extends Model
      */
     public function createdBy()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'created_by_user');
     }
 
     /**
@@ -40,6 +55,6 @@ class Complaint extends Model
      */
     public function updatedBy()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'updated_by_user');
     }
 }

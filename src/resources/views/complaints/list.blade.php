@@ -100,11 +100,13 @@
                     <thead>
                     <tr class="list-header">
                         <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="name">{{ __('main.name') }}</button></th>
-{{--                        <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="category">{{ __('main.category') }}</button></th>--}}
+{{--                       Here--}}
+                        <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="category">{{ __('main.category') }}</button></th>
                         <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="priority">{{ __('main.priority') }}</button></th>
                         <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="created_at">{{ __('main.created_at') }}</button></th>
                         <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="status">{{ __('main.status') }}</button></th>
-{{--                        <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="assigned_user_id">{{ __('main.assigned_user_id') }}</button></th>--}}
+{{--                        here--}}
+                        <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="assigned_user_id">{{ __('main.assigned_user_id') }}</button></th>
                         <th scope="col"><button type="submit" class="btn btn-light" name="sort" value="system_id">{{ __('main.system_id') }}</button></th>
                     </tr>
                     </thead>
@@ -112,12 +114,12 @@
                     @foreach ($complaints as $complaint)
                         <tr>
                             <th scope="row"><a href="{{ route('complaint.show', $complaint->id) }}" class="text-green">{{ $complaint->name }}</a></th>
-{{--                            <th>{{ $complaint->category }}</a></th>--}}
+                            <th>{{ $complaint->category }}</a></th>
                             <th>{{ $complaint->priority }}</a></th>
                             <th>{{ $complaint->created_at }}</th>
                             <td>{{ $complaint->status }}</td>
-{{--                            <th>{{ $complaint->user->name }}</th>--}}
-                            <td> {{ $complaint->system->name }} </td>
+                            <th>{{ $complaint->user->name ?? '' }}</th>
+                            <td> {{ $complaint->system->name ?? '' }} </td>
                         </tr>
                     @endforeach
                     </tbody>

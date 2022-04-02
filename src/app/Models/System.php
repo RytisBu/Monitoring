@@ -42,7 +42,7 @@ class System extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'assigned_user_id');
     }
 
     /**
@@ -50,7 +50,7 @@ class System extends Model
      */
     public function complaints()
     {
-        return $this->hasMany(Complaint::class, 'system_id');
+        return $this->hasMany(Complaint::class);
     }
 
     public static function getActiveSystems()

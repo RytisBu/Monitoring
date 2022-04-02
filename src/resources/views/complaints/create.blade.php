@@ -3,7 +3,7 @@
 @section('main.content')
     <form action="{{ route('complaint.store') }}" method="post" class="needs-validation simple-form-long">
         @CSRF
-        <legend>System Create View</legend>
+        <legend>Complaint Create View</legend>
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label>{{ __('main.name') }}:</label>
