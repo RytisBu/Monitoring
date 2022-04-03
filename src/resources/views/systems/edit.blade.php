@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('list.view')
+@section('main.content')
     <form action="{{ route('system.update', ($system->id ?? '')) }}" method="post" class="needs-validation simple-form-long">
         @CSRF
         <legend>System Edit View</legend>
@@ -49,13 +49,12 @@
 @endsection
 
 @section('sidebar.collection')
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item side-nav">
             <a href="{{ route('system.edit', $system->id) }}" class="nav-link sidebar-nav
             @if (Route::currentRouteName() == 'system.edit') active @else text-white @endif
                 ">
             <span>
-                Edit View
+                {{ __('actions.edit') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                     <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
@@ -67,7 +66,7 @@
             @if (Route::currentRouteName() == 'system.create') active @else text-white @endif
                 ">
             <span>
-                Create View
+                {{ __('actions.create') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                     <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
@@ -79,7 +78,7 @@
             @if (Route::currentRouteName() == 'system.show') active @else text-white @endif
                 ">
             <span>
-                Detail View
+                {{ __('actions.view') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
@@ -94,7 +93,7 @@
             @if (in_array(Route::currentRouteName(), ['system.list'])) active @else text-white @endif
                 ">
             <span>
-                List View
+                {{ __('actions.list') }}
             </span>
                 <svg class="sidebar-img" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
@@ -108,6 +107,4 @@
                 </svg>
             </a>
         </li>
-    </ul>
-    <hr>
 @endsection

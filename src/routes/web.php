@@ -8,6 +8,8 @@ use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\RegistrationController;
 use App\Http\Controllers\Systems\SystemController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Complaints\ComplaintController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +44,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit={id}', [SystemController::class, 'edit'])->name('system.edit');
         Route::post('/edit={id}', [SystemController::class, 'update'])->name('system.update');
         Route::get('/delete={id}', [SystemController::class, 'destroy'])->name('system.destroy');
+    });
+
+    Route::middleware(['auth'])->prefix('complaints')->group(function() {
+        Route::match(array('GET'), '/', [ComplaintController::class, 'index'])->name('complaint.list');
+        Route::get('/create', [ComplaintController::class, 'create'])->name('complaint.create');
+        Route::post('/create', [ComplaintController::class, 'store'])->name('complaint.store');
+        Route::get('/show={id}', [ComplaintController::class, 'show'])->name('complaint.show');
+        Route::get('/edit={id}', [ComplaintController::class, 'edit'])->name('complaint.edit');
+        Route::post('/edit={id}', [ComplaintController::class, 'update'])->name('complaint.update');
+        Route::get('/delete={id}', [ComplaintController::class, 'destroy'])->name('complaint.destroy');
     });
 });
 

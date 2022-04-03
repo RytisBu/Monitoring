@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Http\Services\Systems;
+namespace App\Http\Services\Complaints;
 
 use Illuminate\Http\Request;
-use App\Models\System AS SystemModel;
 
-class System
+class Complaint
 {
     public static function denormalizeData(Request $request)
     {
-        $system = new SystemModel();
+        $complaint = new Complaint();
 
         foreach($request->all() as $row => $value) {
             if ($row !== 'page') {
-                $system->$row = $value;
+                $complaint->$row = $value;
             }
         }
 
-        return $system;
+        return $complaint;
     }
 
     public static function filter(array $data)
@@ -51,21 +50,5 @@ class System
         }
 
         return $orderType ? $orderType : 'DESC';
-    }
-
-    public static function getSerializedSystemsIds()
-    {
-        $serializedSystemsIds = '';
-        $systems              = SystemModel::where('status', 'Active')->where('deleted', '0')->get();
-
-        foreach ($systems as $row => $system) {
-            if ($row == 0) {
-                $serializedSystemsIds = $system->id;
-            } else {
-                $serializedSystemsIds = $serializedSystemsIds . ', ' . $system->id;
-            }
-        }
-
-        return $serializedSystemsIds;
     }
 }

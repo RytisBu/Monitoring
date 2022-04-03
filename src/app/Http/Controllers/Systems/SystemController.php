@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Systems;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\System;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\App;
+//use Illuminate\Pagination\Paginator;
+//use Illuminate\Support\Facades\App;
 use App\Http\Services\Systems\System AS SystemsService;
 use App\Models\User;
 use App\Http\Requests\Systems\CreateSystemRequest;
@@ -21,7 +21,7 @@ class SystemController extends Controller
      */
     public function index(Request $request)
     {
-        Paginator::useBootstrap();
+//        Paginator::useBootstrap();
 
         $users         = User::getActiveUsers();
         $orderBy       = SystemsService::sortBy($request->sort);
@@ -68,7 +68,7 @@ class SystemController extends Controller
         $system->deleted          = 0;
         $system->save();
 
-        return $this->create();
+        return redirect()->route('system.show', $system->id);
     }
 
     /**
@@ -79,8 +79,12 @@ class SystemController extends Controller
      */
     public function show($id)
     {
-        $system = System::where('id', '=', $id)->first();
+        $system = System::where('id', '=', $id)->where('deleted', '!=', '1')->first();
         $users  = User::getAllUsers();
+
+        if(empty($system)) {
+            return view('complaint.list');
+        }
 
         return view('systems.show', compact('system', 'users'));
     }
@@ -94,7 +98,7 @@ class SystemController extends Controller
     public function edit($id)
     {
         $users  = User::getActiveUsers();
-        $system = System::where('id', '=', $id)->first();
+        $system = System::where('id', '=', $id)->where('deleted', '!=', '1')->first();
 
         return view('systems.edit', compact('system', 'users'));
     }

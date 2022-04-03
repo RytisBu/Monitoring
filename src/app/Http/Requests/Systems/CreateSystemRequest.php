@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Systems;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\User;
+use App\Http\Services\Users\User AS UserService;
 
 class CreateSystemRequest extends FormRequest
 {
@@ -24,15 +24,7 @@ class CreateSystemRequest extends FormRequest
      */
     public function rules()
     {
-        $serializedUsersIds = '';
-        $users = User::where('status', '=', 'Active')->get();
-        foreach ($users as $row => $user) {
-            if ($row == 0) {
-                $serializedUsersIds = $user->id;
-            } else {
-                $serializedUsersIds = $serializedUsersIds . ', ' . $user->id;
-            }
-        }
+        $serializedUsersIds = UserService::getSerializedUsersIds();
 
         return [
             'name'             => 'required|min:2|max:100',

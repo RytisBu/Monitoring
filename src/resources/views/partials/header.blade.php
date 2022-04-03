@@ -13,7 +13,7 @@
                         <a class="nav-link" href={{ route('main') }}>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Complaints</a>
+                        <a class="nav-link" href="{{ route('complaint.list') }}">Complaints</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('system.list') }}">Systems</a>
