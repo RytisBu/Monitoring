@@ -58,8 +58,6 @@ class ComplaintController extends Controller
      */
     public function store(CreateComplaintRequest $request)
     {
-        $user = User::where('id', $request->assigned_user_id)->first();
-
         $complaint                   = new Complaint();
         $complaint->name             = $request->name;
         $complaint->assigned_user_id = $request->assigned_user_id;
@@ -104,9 +102,16 @@ class ComplaintController extends Controller
      */
     public function edit($id)
     {
-        $complaint = Complaint::with('user', 'system')->where('deleted', '0')->first();
+        $complaint = Complaint::with('user', 'system')
+            ->where('deleted', '!=', '1')
+            ->where('id', $id)
+            ->first();
         $users     = User::getActiveUsers();
         $systems   = System::getActiveSystems();
+
+        if(empty($complaint)) {
+            return view('complaint.list');
+        }
 
         return view('complaints.edit', compact('users', 'systems', 'complaint'));
     }
@@ -120,7 +125,7 @@ class ComplaintController extends Controller
      */
     public function update(CreateComplaintRequest $request, $id)
     {
-        $complaint= Complaint::where('id', $id)->first();
+        $complaint = Complaint::where('id', $id)->where('deleted', '!=', '1')->first();
 
         if(empty($complaint)) { return $this->create(); }
 
@@ -145,7 +150,7 @@ class ComplaintController extends Controller
      */
     public function destroy($id)
     {
-        $response = Complaint::find($id)->delete();
+        $response = Complaint::where('id', $id)->delete();
 
         if($response) {
             return redirect()->route('complaint.list');

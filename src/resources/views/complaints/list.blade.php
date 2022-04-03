@@ -17,11 +17,11 @@
                             @empty($complaintsFilter->category)
                                 <option selected></option>
                             @endempty
-                            <option value="System not working" @if (($complaintsFilter->category ?? '') == 'System not working') selected @endif>System not working</option>
-                            <option value="Need permissions" @if (($complaintsFilter->category ?? '') == 'Need permissions') selected @endif>Need permissions</option>
-                            <option value="Found bug" @if (($complaintsFilter->category ?? '') == 'Found bug') selected @endif>Found bug</option>
-                            <option value="API" @if (($complaintsFilter->category ?? '') == 'API') selected @endif>API</option>
-                            <option value="Other" @if (($complaintsFilter->category ?? '') == 'Other') selected @endif>Other</option>
+                            <option value="System not working" @if (($complaintsFilter->category ?? '') == 'System not working') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
+                            <option value="Need permissions" @if (($complaintsFilter->category ?? '') == 'Need permissions') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
+                            <option value="Found bug" @if (($complaintsFilter->category ?? '') == 'Found bug') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
+                            <option value="API" @if (($complaintsFilter->category ?? '') == 'API') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
+                            <option value="Other" @if (($complaintsFilter->category ?? '') == 'Other') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">
@@ -30,9 +30,9 @@
                             @empty($complaintsFilter->priority)
                                 <option selected></option>
                             @endempty
-                            <option value="Ctritical" @if (($complaintsFilter->priority ?? '') == 'Critical') selected @endif>Critical</option>
-                            <option value="Normal" @if (($complaintsFilter->priority ?? '') == 'Normal') selected @endif>Normal</option>
-                            <option value="Low" @if (($complaintsFilter->priority ?? '') == 'Low') selected @endif>Low</option>
+                            <option value="Ctritical" @if (($complaintsFilter->priority ?? '') == 'Critical') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
+                            <option value="Normal" @if (($complaintsFilter->priority ?? '') == 'Normal') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
+                            <option value="Low" @if (($complaintsFilter->priority ?? '') == 'Low') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">
@@ -41,11 +41,11 @@
                             @empty($complaintsFilter->status)
                                 <option selected></option>
                             @endempty
-                            <option value="Registered" @if (($complaintsFilter->status ?? '') == 'Registered') selected @endif>Registered</option>
-                            <option value="Solving" @if (($complaintsFilter->status ?? '') == 'Solving') selected @endif>Solving</option>
-                            <option value="Resolved" @if (($complaintsFilter->status ?? '') == 'Resolved') selected @endif>Resolved</option>
-                            <option value="Spam" @if (($complaintsFilter->status ?? '') == 'Spam') selected @endif>Spam</option>
-                            <option value="Inform client" @if (($complaintsFilter->status ?? '') == 'Inform client') selected @endif>Inform client</option>
+                            <option value="Registered" @if (($complaintsFilter->status ?? '') == 'Registered') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
+                            <option value="Solving" @if (($complaintsFilter->status ?? '') == 'Solving') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
+                            <option value="Resolved" @if (($complaintsFilter->status ?? '') == 'Resolved') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
+                            <option value="Spam" @if (($complaintsFilter->status ?? '') == 'Spam') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
+                            <option value="Inform client" @if (($complaintsFilter->status ?? '') == 'Inform client') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">
@@ -139,7 +139,7 @@
             @if (in_array(Route::currentRouteName(), ['complaint.list'])) active @else text-white @endif
                 ">
             <span>
-                List View
+                {{ __('actions.list') }}
             </span>
                 <svg class="sidebar-img" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
@@ -158,7 +158,7 @@
             @if (Route::currentRouteName() == 'complaint.create') active @else text-white @endif
                 ">
             <span>
-                Create View
+                {{ __('actions.create') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                     <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>

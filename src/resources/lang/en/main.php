@@ -12,7 +12,8 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'main_info'              => 'Main info',
+    'additional_info'        => 'Additional info',
     'name'                   => 'Name',
     'created_at'             => 'Created at',
     'updated_at'             => 'Updated at',
@@ -27,5 +28,29 @@ return [
     'category'               => 'Category',
     'priority'               => 'Priority',
     'system_id'              => 'System',
-    'complaints_list_header' => 'Complaints List View'
+    'created_by'             => 'Created by',
+    'updated_by'             => 'Updated by',
+    'first_name'             => 'First name',
+    'last_name'              => 'Last name',
+    'email'                  => 'Email',
+    'new_password'           => 'New_password',
+    'old_password'           => 'Old password',
+    'repeat_password'        => 'Repeat password',
+    'street'                 => 'Street',
+    'city'                   => 'City',
+    'state'                  => 'State',
+    'language'               => 'Language',
+    'mobile_phone'           => 'Mobile phone',
+    'work_phone'             => 'Work phone',
+    'user_type'              => 'User type',
+    'email_confirmed'        => 'Email confirmed',
+    'complaints_list_header' => 'Complaints List View',
+    'complaint_detail_view'  => 'Complaint Detail View',
+    'complaint_edit_view'    => 'Complaint Edit View',
+    'complaint_create_view'  => 'Complaint Create View',
+    'system_create_view'     => 'System Create View',
+    'system_detail_view'     => 'System Detail View',
+    'profile_edit_view'      => 'Profile Edit View',
+    'profile_detail_view'    => 'Profile Detail View',
+
 ];

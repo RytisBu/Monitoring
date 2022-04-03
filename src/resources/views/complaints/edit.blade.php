@@ -3,7 +3,7 @@
 @section('main.content')
     <form action="{{ route('complaint.update', ($complaint->id ?? '')) }}" method="post" class="needs-validation simple-form-long">
         @CSRF
-        <legend>Complaint Edit View</legend>
+        <legend>{{ __('main.complaint_edit_view') }}</legend>
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label>{{ __('main.name') }}:</label>
@@ -25,11 +25,11 @@
                 <label>{{ __('main.status') }}:</label>
                 <select class="form-select form-select @error('status') validation-issue text-red @enderror" name="status" aria-label=".form-select-sm example">
                     @error('status') <option selected>{{ $message }}</option> @enderror
-                    <option value="Registered" @if ($complaint->status == 'Registered') selected @endif>Registered</option>
-                    <option value="Solving" @if ($complaint->status == 'Solving') selected @endif>Solving</option>
-                    <option value="Resolved" @if ($complaint->status == 'Resolved') selected @endif>Resolved</option>
-                    <option value="Spam" @if ($complaint->status == 'Spam') selected @endif>Spam</option>
-                    <option value="Inform client" @if ($complaint->status == 'Inform client') selected @endif>Inform client</option>
+                    <option value="Registered" @if (($complaint->status ?? '') == 'Registered') selected @endif>Registered</option>
+                    <option value="Solving" @if (($complaint->status ?? '') == 'Solving') selected @endif>Solving</option>
+                    <option value="Resolved" @if (($complaint->status ?? '') == 'Resolved') selected @endif>Resolved</option>
+                    <option value="Spam" @if (($complaint->status ?? '') == 'Spam') selected @endif>Spam</option>
+                    <option value="Inform client" @if (($complaint->status ?? '') == 'Inform client') selected @endif>Inform client</option>
                 </select>
             </div>
         </div>
@@ -39,20 +39,20 @@
                 <label>{{ __('main.priority') }}:</label>
                 <select class="form-select form-select @error('priority') validation-issue text-red @enderror" name="priority" aria-label=".form-select-sm example">
                     @error('priority') <option selected>{{ $message }}</option> @enderror
-                    <option value="Critical" @if ($complaint->priority == 'Critical') selected @endif>Critical</option>
-                    <option value="Normal" @if ($complaint->priority == 'Normal') selected @endif>Normal</option>
-                    <option value="Low" @if ($complaint->priority == 'Low') selected @endif>Low</option>
+                    <option value="Critical" @if (($complaint->priority ?? '') == 'Critical') selected @endif>Critical</option>
+                    <option value="Normal" @if (($complaint->priority ?? '') == 'Normal') selected @endif>Normal</option>
+                    <option value="Low" @if (($complaint->priority ?? '') == 'Low') selected @endif>Low</option>
                 </select>
             </div>
             <div class="col-md-4 mb-3">
                 <label>{{ __('main.category') }}:</label>
                 <select class="form-select form-select @error('category') validation-issue text-red @enderror" name="category" aria-label=".form-select-sm example">
                     @error('category') <option selected>{{ $message }}</option> @enderror
-                    <option value="System not working" @if ($complaint->category == 'System not working') selected @endif>System not working</option>
-                    <option value="Need permissions" @if ($complaint->category == 'Need permissions') selected @endif>Need permissions</option>
-                    <option value="Found bug" @if ($complaint->category == 'Found bug') selected @endif>Found bug</option>
-                    <option value="API" @if ($complaint->category == 'API') selected @endif>API</option>
-                    <option value="Other" @if ($complaint->category == 'Other') selected @endif>Other</option>
+                    <option value="System not working" @if (($complaint->category ?? '') == 'System not working') selected @endif>System not working</option>
+                    <option value="Need permissions" @if (($complaint->category ?? '') == 'Need permissions') selected @endif>Need permissions</option>
+                    <option value="Found bug" @if (($complaint->category ?? '') == 'Found bug') selected @endif>Found bug</option>
+                    <option value="API" @if (($complaint->category ?? '') == 'API') selected @endif>API</option>
+                    <option value="Other" @if (($complaint->category ?? '') == 'Other') selected @endif>Other</option>
                 </select>
             </div>
             <div class="col-md-4 mb-3">
@@ -87,7 +87,7 @@
             @if (Route::currentRouteName() == 'complaint.edit') active @else text-white @endif
             ">
             <span>
-                Edit View
+                {{ __('actions.edit') }}
             </span>
             <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                 <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
@@ -99,7 +99,7 @@
             @if (Route::currentRouteName() == 'complaint.create') active @else text-white @endif
             ">
             <span>
-                Create View
+                {{ __('actions.create') }}
             </span>
             <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                 <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
@@ -111,7 +111,7 @@
             @if (Route::currentRouteName() == 'complaint.show') active @else text-white @endif
             ">
             <span>
-                Detail View
+                {{ __('actions.view') }}
             </span>
             <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                  style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
@@ -126,7 +126,7 @@
             @if (in_array(Route::currentRouteName(), ['complaint.list'])) active @else text-white @endif
             ">
             <span>
-                List View
+                {{ __('actions.list') }}
             </span>
             <svg class="sidebar-img" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">

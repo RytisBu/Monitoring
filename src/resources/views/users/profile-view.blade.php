@@ -5,64 +5,53 @@
         <thead>
             <tr>
                 <th scope="col" colspan="5" rowspan="2">
-                    <legend>Profile Detail View</legend>
+                    <legend>{{ __('main.profile_detail_view') }}</legend>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr class="detailview-subtitles">
-                <th scope="row" colspan="5">Main user info</th>
+                <th scope="row" colspan="5">{{ __('main.main_info') }}</th>
             </tr>
             <tr>
-                <th scope="row">First Name:</th>
+                <th scope="row">{{ __('main.first_name') }}:</th>
                 <td>{{ $user->first_name ?? '' }}</td>
                 <th scope="row"></th>
-                <th>Last Name:</th>
+                <th>{{ __('main.last_name') }}:</th>
                 <td>{{ $user->last_name ?? '' }}</td>
             </tr>
             <tr>
-                <th scope="row">Preffered language:</th>
-                <td>{{ $user->language ?? '' }}</td>
+                <th scope="row">{{ __('main.language') }}:</th>
+                <td>{{ __('dopdowns.language.' . ($user->language ?? '')) }}</td>
                 <th scope="row"></th>
-                <th>Email:</th>
+                <th>{{ __('main.email') }}:</th>
                 <td>{{ $user->email ?? '' }}</td>
             </tr>
             <tr>
-                <th scope="row">Mobile phone:</th>
+                <th scope="row">{{ __('main.mobile_phone') }}:</th>
                 <td>{{ $user->phone_mobile ?? '' }}</td>
                 <th scope="row"></th>
-                <th>Work phone:</th>
+                <th>{{ __('main.work_phone') }}:</th>
                 <td>{{ $user->work_mobile ?? '' }}</td>
             </tr>
             <tr>
-                <th scope="row">Mobile phone:</th>
-                <td>{{ $user->phone_mobile ?? '' }}</td>
-                <th scope="row"></th>
-                <th>Work phone:</th>
-                <td>{{ $user->work_mobile ?? '' }}</td>
-            </tr>
-            <tr>
-                <th scope="row" colspan="1">Description:</th>
+                <th scope="row" colspan="1">{{ __('main.description') }}:</th>
                 <td colspan="4">{{ $user->description ?? '' }}</td>
             </tr>
             <tr class="detailview-subtitles">
-                <th scope="row" colspan="5">Additional info</th>
+                <th scope="row" colspan="5">{{ __('main.additional_info') }}</th>
             </tr>
             <tr>
-                <th scope="row">Status:</th>
-                <td>{{ $user->status ?? '' }}</td>
+                <th scope="row">{{ __('main.status') }}:</th>
+                <td>{{ __('dropdowns.status.' . ($user->status ?? '')) }}</td>
                 <th scope="row"></th>
-                <th>User type:</th>
+                <th>{{ __('main.user_type') }}:</th>
                 <td>
-                    @if (($user->is_admin ?? '') === 1)
-                        System Administrator
-                    @else
-                        Regular User
-                    @endif
+                    {{ __('dropdowns.user_type.' . ($user->is_admin)) }}
                 </td>
             </tr>
             <tr>
-                <th scope="row">Email confirmed:</th>
+                <th scope="row">{{ __('main.email_confirmed') }}:</th>
                 <td>@if (!empty($user->email_verified_at ?? ''))
                         True
                     @else
@@ -83,7 +72,7 @@
             @if (in_array(Route::currentRouteName(), ['profile.edit', 'profile.store'])) active @else text-white @endif
                 ">
             <span>
-                Edit View
+                {{ __('actions.edit') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
@@ -97,7 +86,7 @@
             @if (Route::currentRouteName() == 'profile.show') active @else text-white @endif
                 ">
             <span>
-                Detail View
+                {{ __('actions.view') }}
             </span>
                 <svg class="sidebar-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                      style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
