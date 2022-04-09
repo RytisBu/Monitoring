@@ -172,14 +172,13 @@ class ComplaintController extends Controller
         $orderBy          = ComplaintsService::sortBy($request->sort);
         $orderType        = ComplaintsService::sortType($request->orderType);
         $filter           = ComplaintsService::filter($request->all());
-//        dd($filter);
-        $display = (integer)$request->records_display;
+
         if (!empty($filter)) {
             $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate($request->records_display);
         } else {
             $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate($request->records_display);
         }
-//dd($complaints);
+
         return response()->json($complaints);
     }
 }
