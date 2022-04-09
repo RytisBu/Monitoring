@@ -38,7 +38,6 @@ const filterUsers = function() {
 </script>
 
 <template>
-
     <div class="row">
         <button class="btn-dark" :class="{ red: isRed }" v-on:click="loadUser()">
             Loade user

@@ -158,4 +158,27 @@ class ComplaintController extends Controller
 
         return redirect()->route('complaint.show', $id);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getList(Request $request)
+    {
+        $complaintsFilter = ComplaintsService::denormalizeData($request);
+        $users            = User::getActiveUsers();
+        $systems          = System::where('deleted', '0')->get();
+        $orderBy          = ComplaintsService::sortBy($request->sort);
+        $orderType        = ComplaintsService::sortType($request->orderType);
+        $filter           = ComplaintsService::filter($request->all());
+
+        if (!empty($filter)) {
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate($request->records_display);
+        } else {
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate($request->records_display);
+        }
+
+        return response()->json($complaints);
+    }
 }

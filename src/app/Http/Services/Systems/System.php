@@ -25,7 +25,7 @@ class System
         $conditionsArray = array();
 
         foreach($data as $row => $value){
-            if (!empty($value) && !in_array($row, ['page', 'orderType', 'sort', '_token'])) {
+            if (!empty($value) && !in_array($row, ['page', 'orderType', 'sort', '_token', 'records_display'])) {
                 if (in_array($row, ['created_at', 'updated_at'])) {
                     array_push($conditionsArray, [$row, '>=', $value]);
                 } else {

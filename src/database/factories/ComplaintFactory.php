@@ -30,8 +30,8 @@ class ComplaintFactory extends Factory
         $system = System::inRandomOrder()->take(1)->pluck('id');
 
         return [
-            DB::table('complaints')->insert([
-                'id' => $this->faker->unique()->numberBetween(1, 20),//rand(100, 500),
+//            DB::table('complaints')->insert([
+                //rand(100, 500),
 //                'name' => $this->faker->name,
 //                'id' => 1,
                 'name' => 'testas',
@@ -48,8 +48,9 @@ class ComplaintFactory extends Factory
                 'assigned_user_id' => 1,//rand(1, 2),
                 'system_id' => 16,
                 'description' => 'Testas testauskas testukas',//$this->faker->text(255),
+//                'system_id' =>
                 'deleted' => 0,//rand(0, 1),
-            ])
+//            ])
         ];
     }
 }

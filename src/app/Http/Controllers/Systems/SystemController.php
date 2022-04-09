@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Systems;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Complaints\Complaint as ComplaintsService;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
 use App\Models\System;
 //use Illuminate\Pagination\Paginator;
@@ -141,5 +143,27 @@ class SystemController extends Controller
         }
 
         return redirect()->route('system.show', $id);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getList(Request $request)
+    {
+        $users         = User::getActiveUsers();
+        $orderBy       = SystemsService::sortBy($request->sort);
+        $orderType     = SystemsService::sortType($request->orderType);
+        $systemsFilter = SystemsService::denormalizeData($request);
+        $filter        = SystemsService::filter($request->all());
+
+        if (!empty($filter)) {
+            $systems = System::where($filter)->orderBy($orderBy, $orderType)->paginate($request->records_display);
+        } else {
+            $systems = System::orderBy($orderBy, $orderType)->paginate($request->records_display);
+        }
+
+        return response()->json($systems);
     }
 }

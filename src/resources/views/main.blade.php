@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+{{--    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">--}}
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -20,17 +20,16 @@
     @else
         @include('partials.header')
         <div class="row">
-            @include('sidebar')
-            <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
-                @if (!Auth::guest())
+            @if(Route::current()->getName() == 'main')
+                @include('homepage.main')
+            @else
+                @include('sidebar')
+            @endif
+            @if (!Auth::guest() && Route::current()->getName() != 'main')
+                <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
                     @yield('main.content')
-
-                    @if(Route::current()->getName() == 'main')
-                        <div id="app">
-                        </div>
-                    @endif
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
         @include('partials/footer')
     @endif
