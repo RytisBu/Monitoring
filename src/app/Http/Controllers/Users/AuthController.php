@@ -32,8 +32,7 @@ class AuthController extends BaseController
             $login = false;
         }
 
-
-        return view('main', compact('user', 'login'));
+        return redirect()->route('main', compact('user', 'login'));
     }
 
     /**

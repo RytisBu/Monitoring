@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
+Route::get('/complaints/getList', [ComplaintController::class, 'getList']);
 
 //Route::get('/user/{$id}', [UserController::class, 'getUser'], function ($id){
 //

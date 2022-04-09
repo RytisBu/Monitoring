@@ -2,10 +2,12 @@
 import Modal from './views/components/Modal.vue'
 import {reactive, ref, computed, watch} from 'vue'
 
+
 const showModal = ref(false)
 const hasError = ref(false)
 let fontSizeLocal = 13
 let fontSize = ref(10);
+// console.log('Here:' + showComplaints.value);
 
 const classObject = computed(() => {
     if(hasError.value) {
@@ -27,12 +29,11 @@ watch(fontSize, (value, oldValue) => {
 
 <template>
 <!--    :style="styleObject"-->
-    <div :style="styleObject">
-        Testas testas testas {{ fontSize }}
-    </div>
-    <button @click="fontSize++">+</button>
-    <button @click="fontSize--">-</button>
-
+        <div :style="styleObject">
+            Testas testas testas {{ fontSize }}
+        </div>
+        <button @click="fontSize++">+</button>
+        <button @click="fontSize--">-</button>
     <div :class="['text-center', classObject]"></div>
     <button @click="(hasError == true) ? hasError = false : hasError = true">Try it</button>
     <button id="show-modal" @click="showModal = true" class="btn-dark"> Filter </button>

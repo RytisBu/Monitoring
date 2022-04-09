@@ -96,6 +96,7 @@ body {
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     background-color: $bg-color;
     color: $color-black;
+    cursor: pointer;
 }
 
 #typePasswordX::placeholder {

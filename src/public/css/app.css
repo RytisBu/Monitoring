@@ -11367,6 +11367,7 @@ body {
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: #e1e1e1;
   color: #162636;
+  cursor: pointer;
 }
 
 #typePasswordX::-moz-placeholder {

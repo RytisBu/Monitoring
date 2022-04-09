@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Complaint;
 use Illuminate\Database\Seeder;
 
+
 class ComplaintSeeder extends Seeder
 {
     /**
@@ -14,6 +15,8 @@ class ComplaintSeeder extends Seeder
      */
     public function run()
     {
-        Complaint::factory()->times(1)->create();
+        Complaint::factory()->times(15)
+            ->hasSystem()
+            ->create();
     }
 }

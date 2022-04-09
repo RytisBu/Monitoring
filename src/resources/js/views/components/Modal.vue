@@ -1,6 +1,7 @@
 <script setup>
 const props = defineProps({
-    show: Boolean
+    show: Boolean//,
+    // return: 'hello'
 })
 </script>
 
@@ -9,9 +10,9 @@ const props = defineProps({
         <div v-if="show" class="modal-mask">
             <div class="modal-wrapper">
                 <div class="modal-container">
-                    <div class="modal-header">
-                        <slot name="header">default header</slot>
-                    </div>
+<!--                    <div class="modal-header">-->
+<!--                        <slot name="header">default header</slot>-->
+<!--                    </div>-->
 
                     <div class="modal-body flex-end">
                         <slot name="body">default body</slot>

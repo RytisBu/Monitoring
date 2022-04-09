@@ -20,17 +20,16 @@
     @else
         @include('partials.header')
         <div class="row">
-            @include('sidebar')
-            <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
-                @if (!Auth::guest())
+            @if(Route::current()->getName() == 'main')
+                @include('homepage.main')
+            @else
+                @include('sidebar')
+            @endif
+            @if (!Auth::guest() && Route::current()->getName() != 'main')
+                <div class="d-flex flex-column justify-content-center main-bar" style="position: absolute;">
                     @yield('main.content')
-
-                    @if(Route::current()->getName() == 'main')
-                        <div id="app">
-                        </div>
-                    @endif
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
         @include('partials/footer')
     @endif
