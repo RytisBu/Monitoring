@@ -1,32 +1,23 @@
 @extends('main')
 
 @section('main.content')
-    <form action="{{ route('profile.store', [Auth::user()->id ?? '']) }}" method="post" class="needs-validation simple-form-long">
+    <form action="{{ route('user.update', [$user->id]) }}" method="post" class="needs-validation simple-form-long">
         @CSRF
         <legend>{{ __('main.profile_edit_view') }}</legend>
         <div class="row">
             <div class="col-md-3 mb-3">
                 <label for="validationTooltip01">{{ __('main.first_name') }}:</label>
                 <input type="text" name="first_name" class="form-control" id="validationTooltip01" value="{{ $user->first_name ?? '' }}" placeholder="First name" required>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationTooltip02">{{ __('main.last_name') }}:</label>
                 <input type="text" name="last_name" class="form-control" id="validationTooltip02" value="{{ $user->last_name ?? '' }}" placeholder="Last name" required>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="validationTooltipEmail">{{ __('main.email') }}:</label>
                 <div class="input-group">
                     <span class="input-group-text">@</span>
                     <input type="email" name="email" class="form-control" id="validationTooltipEmail" value="{{ $user->email ?? '' }}" placeholder="Email" aria-describedby="validationTooltipEmailPrepend" required @if(!empty($user->email)) disabled @endif>
-                    <div class="invalid-tooltip">
-                        Please choose a unique and valid username.
-                    </div>
                 </div>
             </div>
         </div>
@@ -72,9 +63,6 @@
                 <div class="input-group">
                     <span class="input-group-text">+</span>
                     <input type="number" name="phone_mobile" class="form-control" id="validationTooltipMobilePhone" value="{{ $user->phone_mobile ?? '' }}" aria-describedby="validationTooltipMobilePhonePrepend">
-                    <div class="invalid-tooltip">
-                        Please type in 11 numbers containing your mobile phone number...
-                    </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
@@ -82,9 +70,6 @@
                 <div class="input-group">
                     <span class="input-group-text">+</span>
                     <input type="number" name="work_mobile" class="form-control" id="validationTooltipWorkPhone" value="{{ $user->work_mobile ?? '' }}" aria-describedby="validationTooltipWorkPhonePrepend">
-                    <div class="invalid-tooltip">
-                        Please type in 11 numbers containing your work phone number...
-                    </div>
                 </div>
             </div>
         </div>
@@ -102,9 +87,9 @@
 
 @section('sidebar.collection')
     <li class="nav-item side-nav">
-        <a href="{{ route('profile.edit', [Auth::user()->id ?? '']) }}" class="nav-link sidebar-nav
-            @if (in_array(Route::currentRouteName(), ['profile.edit', 'profile.store'])) active @else text-white @endif
-        ">
+        <a href="{{ route('user.edit', [$user->id]) }}" class="nav-link sidebar-nav
+            @if (in_array(Route::currentRouteName(), ['user.edit', 'user.store'])) active @else text-white @endif
+            ">
             <span>
                 {{ __('actions.edit') }}
             </span>
@@ -116,9 +101,9 @@
         </a>
     </li>
     <li class="nav-item side-nav">
-        <a href="{{ route('profile.show') }}" class="nav-link sidebar-nav
-            @if (Route::currentRouteName() == 'profile.show') active @else text-white @endif
-        ">
+        <a href="{{ route('user.show', [$user->id ?? '']) }}" class="nav-link sidebar-nav
+            @if (Route::currentRouteName() == 'user.show') active @else text-white @endif
+            ">
             <span>
                 {{ __('actions.view') }}
             </span>

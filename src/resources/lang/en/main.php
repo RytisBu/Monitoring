@@ -45,6 +45,7 @@ return [
     'user_type'              => 'User type',
     'email_confirmed'        => 'Email confirmed',
     'complaints_list_header' => 'Complaints List View',
+    'users_list_header'      => 'Users List View',
     'complaint_detail_view'  => 'Complaint Detail View',
     'complaint_edit_view'    => 'Complaint Edit View',
     'complaint_create_view'  => 'Complaint Create View',
@@ -52,5 +53,7 @@ return [
     'system_detail_view'     => 'System Detail View',
     'profile_edit_view'      => 'Profile Edit View',
     'profile_detail_view'    => 'Profile Detail View',
+    'phone_mobile'           => 'Phone',
+    'user_create_view'       => 'User Create View',
 
 ];

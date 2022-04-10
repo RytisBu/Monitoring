@@ -1,6 +1,4 @@
 <header>
-{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--}}
-{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--}}
     <nav class="navbar navbar-expand-sm bg-green navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('main') }}">Tiketor</a>
@@ -18,9 +16,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('system.list') }}">Systems</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
-                    </li>
+                    @if((Auth::user()->is_admin ?? '') === 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.list') }}">Users</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="#">Admin</a>
                     </li>
@@ -29,15 +29,12 @@
                             {{ Auth::user()->name ?? '' }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.show', [Auth::user()->id ?? '']) }}">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Sign Out</a></li>
                         </ul>
                     </li>
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link" href="#">Rytis Vasiliauskas</a>--}}
-{{--                    </li>--}}
                 </ul>
             </div>
         </div>

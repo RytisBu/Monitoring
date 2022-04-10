@@ -31,12 +31,6 @@ class RegisterUserRequest extends FormRequest
             'password'        => 'required|max:100|min:6',
             'repeat_password' => 'required|same:password|max:100|min:6',
             'description'     => 'max:255',
-//            'address_street'  => 'max:50',
-//            'address_state'   => 'max:50',
-//            'address_country' => 'max:50',
-//            'address_city'    => 'max:50',
-//            'phone_mobile'    => 'max:11|min:11',
-//            'work_mobile'    => 'max:11|min:11'
         ];
     }
 }

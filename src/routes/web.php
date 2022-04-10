@@ -7,7 +7,6 @@ use \App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\RegistrationController;
 use App\Http\Controllers\Systems\SystemController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Complaints\ComplaintController;
 
 /*
@@ -30,10 +29,20 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['auth'])->prefix('profile')->group(function() {
-        Route::get('/', [UserController::class, 'index'])->name('profile.show');
-        Route::get('/edit', [UserController::class, 'store'])->name('profile.edit');
-        Route::post('/edit', [UserController::class, 'store'])->name('profile.store');
+    Route::prefix('profile')->group(function() {
+        Route::get('/', [UserController::class, 'profile'])->name('profile.show');
+        Route::get('/edit={id}', [UserController::class, 'editProfile'])->name('profile.edit');
+        Route::post('/edit', [UserController::class, 'updateProfile'])->name('profile.store');
+    });
+
+    Route::middleware(['auth'])->prefix('users')->group(function() {
+        Route::get('/', [UserController::class, 'index'])->name('user.list');
+        Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/create', [UserController::class, 'store'])->name('user.store');
+        Route::get('/show={id}', [UserController::class, 'show'])->name('user.show');
+        Route::get('/delete={id}', [UserController::class, 'destroy'])->name('user.destroy');
+        Route::get('/edit={id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('/edit={id}', [UserController::class, 'update'])->name('user.update');
     });
 
     Route::middleware(['auth'])->prefix('systems')->group(function() {
@@ -55,18 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit={id}', [ComplaintController::class, 'update'])->name('complaint.update');
         Route::get('/delete={id}', [ComplaintController::class, 'destroy'])->name('complaint.destroy');
     });
+
+    Route::get('/complaints/getList', [ComplaintController::class, 'getList']);
+    Route::get('/systems/getList', [SystemController::class, 'getList']);
+    Route::withoutMiddleware([VerifyCsrfToken::class])->get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-Route::get('/complaints/getList', [ComplaintController::class, 'getList']);
-Route::get('/systems/getList', [SystemController::class, 'getList']);
-
-//Route::get('/user/{$id}', [UserController::class, 'getUser'], function ($id){
-//
-//});
-Route::controller(UserController::class)->group(function () {
-    Route::get('/user/{filter}/{value}', 'getUser');
-});
-
-
-//Route::withoutMiddleware([VerifyCsrfToken::class])->post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::withoutMiddleware([VerifyCsrfToken::class])->get('/logout', [AuthController::class, 'logout'])->name('logout');
