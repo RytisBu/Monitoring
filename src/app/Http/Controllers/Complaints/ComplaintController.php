@@ -29,9 +29,9 @@ class ComplaintController extends Controller
         $filter           = ComplaintsService::filter($request->all());
 
         if (!empty($filter)) {
-            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(50);
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where($filter)->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(20);
         } else {
-            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(50);
+            $complaints = Complaint::with('system', 'user', 'createdBy', 'updatedBy')->where('deleted', '0')->orderBy($orderBy, $orderType)->paginate(20);
         }
 
         return view('complaints.list', compact('complaints', 'complaintsFilter', 'users', 'systems', 'orderBy', 'orderType'));

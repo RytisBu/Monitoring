@@ -17,11 +17,11 @@
                             @empty($complaintsFilter->category)
                                 <option selected></option>
                             @endempty
-                            <option value="System not working" @if (($complaintsFilter->category ?? '') == 'System not working') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
-                            <option value="Need permissions" @if (($complaintsFilter->category ?? '') == 'Need permissions') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
-                            <option value="Found bug" @if (($complaintsFilter->category ?? '') == 'Found bug') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
-                            <option value="API" @if (($complaintsFilter->category ?? '') == 'API') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
-                            <option value="Other" @if (($complaintsFilter->category ?? '') == 'Other') selected @endif>{{ __('dropdowns.category.' . ($complaintsFilter->category ?? '')) }}</option>
+                            <option value="System not working" @if (($complaintsFilter->category ?? '') == 'System not working') selected @endif>System not working</option>
+                            <option value="Need permissions" @if (($complaintsFilter->category ?? '') == 'Need permissions') selected @endif>Need permissions</option>
+                            <option value="Found bug" @if (($complaintsFilter->category ?? '') == 'Found bug') selected @endif>Found bug</option>
+                            <option value="API" @if (($complaintsFilter->category ?? '') == 'API') selected @endif>API</option>
+                            <option value="Other" @if (($complaintsFilter->category ?? '') == 'Other') selected @endif>Other</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">
@@ -30,9 +30,9 @@
                             @empty($complaintsFilter->priority)
                                 <option selected></option>
                             @endempty
-                            <option value="Ctritical" @if (($complaintsFilter->priority ?? '') == 'Critical') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
-                            <option value="Normal" @if (($complaintsFilter->priority ?? '') == 'Normal') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
-                            <option value="Low" @if (($complaintsFilter->priority ?? '') == 'Low') selected @endif>{{ __('dropdowns.priority.' . ($complaintsFilter->priority ?? '')) }}</option>
+                            <option value="Ctritical" @if (($complaintsFilter->priority ?? '') == 'Critical') selected @endif>Critical</option>
+                            <option value="Normal" @if (($complaintsFilter->priority ?? '') == 'Normal') selected @endif>Normal</option>
+                            <option value="Low" @if (($complaintsFilter->priority ?? '') == 'Low') selected @endif>Low</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">
@@ -41,11 +41,11 @@
                             @empty($complaintsFilter->status)
                                 <option selected></option>
                             @endempty
-                            <option value="Registered" @if (($complaintsFilter->status ?? '') == 'Registered') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
-                            <option value="Solving" @if (($complaintsFilter->status ?? '') == 'Solving') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
-                            <option value="Resolved" @if (($complaintsFilter->status ?? '') == 'Resolved') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
-                            <option value="Spam" @if (($complaintsFilter->status ?? '') == 'Spam') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
-                            <option value="Inform client" @if (($complaintsFilter->status ?? '') == 'Inform client') selected @endif>{{ __('dropdowns.complaints_status.' . ($complaintsFilter->status ?? '')) }}</option>
+                            <option value="Registered" @if (($complaintsFilter->status ?? '') == 'Registered') selected @endif>Registered</option>
+                            <option value="Solving" @if (($complaintsFilter->status ?? '') == 'Solving') selected @endif>Solving</option>
+                            <option value="Resolved" @if (($complaintsFilter->status ?? '') == 'Resolved') selected @endif>Resolved</option>
+                            <option value="Spam" @if (($complaintsFilter->status ?? '') == 'Spam') selected @endif>Spam</option>
+                            <option value="Inform client" @if (($complaintsFilter->status ?? '') == 'Inform client') selected @endif>Inform client</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-6">

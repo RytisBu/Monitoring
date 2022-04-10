@@ -34,10 +34,10 @@
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                             </form>
 
-                            <div class="form-outline form-white mb-4">
-                                <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#">Forgot password?</a>
-                                </p>
-                            </div>
+{{--                            <div class="form-outline form-white mb-4">--}}
+{{--                                <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#">Forgot password?</a>--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
                         </div>
 
                         <div>

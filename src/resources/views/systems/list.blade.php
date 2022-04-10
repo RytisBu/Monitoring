@@ -16,8 +16,8 @@
                     <label>{{ __('main.status') }}:</label>
                     <select class="form-select form-select" name="status" aria-label=".form-select-sm example">
                         <option></option>
-                        <option value="Active" @if (($systemsFilter->status ?? '') == 'Active') selected @endif>{{ __('dropdowns.status.' . ($systemsFilter->status ?? '')) }}</option>
-                        <option value="Inactive" @if (($systemsFilter->status ?? '') == 'Inactive') selected @endif>{{ __('dropdowns.status.' . ($systemsFilter->status ?? '')) }}</option>
+                        <option value="Active" @if (($systemsFilter->status ?? '') == 'Active') selected @endif>{{ __('dropdowns.status.' . ($systemsFilter->status ?? 'Active')) }}</option>
+                        <option value="Inactive" @if (($systemsFilter->status ?? '') == 'Inactive') selected @endif>{{ __('dropdowns.status.' . ($systemsFilter->status ?? 'Inactive')) }}</option>
                     </select>
                 </div>
 {{--                {{ dd($systemsFilter->created_at) }}--}}

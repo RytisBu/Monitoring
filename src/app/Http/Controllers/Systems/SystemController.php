@@ -26,9 +26,9 @@ class SystemController extends Controller
         $filter        = SystemsService::filter($request->all());
 
         if (!empty($filter)) {
-            $systems = System::where($filter)->orderBy($orderBy, $orderType)->paginate(5);
+            $systems = System::where($filter)->orderBy($orderBy, $orderType)->paginate(20);
         } else {
-            $systems = System::orderBy($orderBy, $orderType)->paginate(5);
+            $systems = System::orderBy($orderBy, $orderType)->paginate(20);
         }
 
         return view('systems.list', compact('systems', 'orderBy', 'orderType', 'systemsFilter', 'users'));

@@ -20,10 +20,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.list') }}">Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Admin</a>
+                        </li>
                     @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admin</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href={{ route('main') }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name ?? '' }}

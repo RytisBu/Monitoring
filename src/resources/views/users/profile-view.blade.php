@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th scope="row">{{ __('main.language') }}:</th>
-                <td>{{ __('dopdowns.language.' . ($user->language ?? '')) }}</td>
+                <td>{{ __('dropdowns.language.' . ($user->language ?? '')) }}</td>
                 <th scope="row"></th>
                 <th>{{ __('main.email') }}:</th>
                 <td>{{ $user->email ?? '' }}</td>
