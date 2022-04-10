@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Complaint;
 use Illuminate\Database\Seeder;
-use App\Models\System;
+use App\Models\User;
 
-class ComplaintSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +14,6 @@ class ComplaintSeeder extends Seeder
      */
     public function run()
     {
-        Complaint::factory()->times(15)
-//            ->hasSystem()
-            ->create();
+        User::factory()->times(5)->create();
     }
 }
