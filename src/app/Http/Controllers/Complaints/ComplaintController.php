@@ -87,7 +87,7 @@ class ComplaintController extends Controller
             ->where('deleted', '!=', '1')
             ->first();
 
-        if(empty($complaint)) {
+        if (empty($complaint)) {
             return view('complaint.list');
         }
 
@@ -109,7 +109,7 @@ class ComplaintController extends Controller
         $users     = User::getActiveUsers();
         $systems   = System::getActiveSystems();
 
-        if(empty($complaint)) {
+        if (empty($complaint)) {
             return view('complaint.list');
         }
 
@@ -127,7 +127,7 @@ class ComplaintController extends Controller
     {
         $complaint = Complaint::where('id', $id)->where('deleted', '!=', '1')->first();
 
-        if(empty($complaint)) { return $this->create(); }
+        if (empty($complaint)) { return $this->create(); }
 
         $complaint->name             = $request->name;
         $complaint->assigned_user_id = $request->assigned_user_id;
@@ -152,7 +152,7 @@ class ComplaintController extends Controller
     {
         $response = Complaint::where('id', $id)->delete();
 
-        if($response) {
+        if ($response) {
             return redirect()->route('complaint.list');
         }
 
@@ -166,9 +166,6 @@ class ComplaintController extends Controller
      */
     public function getList(Request $request)
     {
-        $complaintsFilter = ComplaintsService::denormalizeData($request);
-        $users            = User::getActiveUsers();
-        $systems          = System::where('deleted', '0')->get();
         $orderBy          = ComplaintsService::sortBy($request->sort);
         $orderType        = ComplaintsService::sortType($request->orderType);
         $filter           = ComplaintsService::filter($request->all());

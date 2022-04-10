@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\Systems;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\Complaints\Complaint as ComplaintsService;
-use App\Models\Complaint;
 use Illuminate\Http\Request;
 use App\Models\System;
-//use Illuminate\Pagination\Paginator;
-//use Illuminate\Support\Facades\App;
 use App\Http\Services\Systems\System AS SystemsService;
 use App\Models\User;
 use App\Http\Requests\Systems\CreateSystemRequest;
@@ -23,8 +19,6 @@ class SystemController extends Controller
      */
     public function index(Request $request)
     {
-//        Paginator::useBootstrap();
-
         $users         = User::getActiveUsers();
         $orderBy       = SystemsService::sortBy($request->sort);
         $orderType     = SystemsService::sortType($request->orderType);
@@ -114,7 +108,7 @@ class SystemController extends Controller
      */
     public function update(CreateSystemRequest $request, $id)
     {
-        $system= System::where('id', '=', $id)->first();
+        $system = System::where('id', '=', $id)->first();
 
         if(empty($system)) { return $this->create(); }
 
@@ -152,10 +146,8 @@ class SystemController extends Controller
      */
     public function getList(Request $request)
     {
-        $users         = User::getActiveUsers();
         $orderBy       = SystemsService::sortBy($request->sort);
         $orderType     = SystemsService::sortType($request->orderType);
-        $systemsFilter = SystemsService::denormalizeData($request);
         $filter        = SystemsService::filter($request->all());
 
         if (!empty($filter)) {

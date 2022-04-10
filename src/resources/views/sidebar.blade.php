@@ -4,7 +4,8 @@
         @if (
             in_array(Route::current()->getName(), ['profile.edit', 'profile.store', 'profile.show'])
          || in_array(Route::current()->getName(), ['system.edit', 'system.store', 'system.show', 'system.list', 'system.create'])
-         || in_array(Route::current()->getName(), ['complaint.edit', 'complaint.store', 'complaint.show', 'complaint.list', 'complaint.create']))
+         || in_array(Route::current()->getName(), ['complaint.edit', 'complaint.store', 'complaint.show', 'complaint.list', 'complaint.create'])
+         || in_array(Route::current()->getName(), ['user.edit', 'user.store', 'user.show', 'user.list', 'user.create']))
             @yield('sidebar.collection')
         @endif
 {{--        @if (in_array(Route::current()->getName(), ['system.edit', 'system.store', 'system.show', 'system.list', 'system.create']))--}}
